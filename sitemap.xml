@@ -16,7 +16,7 @@
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
+    <loc>http://www.itechq.com/blog/technology/centos-disable-default-firewall.html</loc>
     
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     
@@ -37,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/notes/find-process-name-by-port.html</loc>
+    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
     
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
+    <loc>http://www.itechq.com/blog/notes/find-process-name-by-port.html</loc>
     
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     
@@ -58,14 +58,7 @@
   </url>
   
   <url>
-    <loc>http://www.itechq.com/tags/index.html</loc>
-    
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.itechq.com/blog/technology/centos-disable-default-firewall.html</loc>
+    <loc>http://www.itechq.com/categories/index.html</loc>
     
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     
@@ -79,21 +72,28 @@
   </url>
   
   <url>
-    <loc>http://www.itechq.com/categories/index.html</loc>
+    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
     
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
+    <loc>http://www.itechq.com/tags/index.html</loc>
+    
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.itechq.com/blog/technology/git-manual.html</loc>
     
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/technology/git-manual.html</loc>
+    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
     
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
+    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
     
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     

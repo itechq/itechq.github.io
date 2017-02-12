@@ -6,21 +6,19 @@
     
     
   <url>
-    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
+    <loc>http://www.itechq.com/blog/technology/centos-disable-default-firewall.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>CentOS 7编译Hadoop 2.7.3</title>
-        <pubTime>2016-09-01T13:36:22.000Z</pubTime>
+        <title>CentOS7 关闭默认防火墙</title>
+        <pubTime>2016-08-28T11:08:28.000Z</pubTime>
         
         <tag>CentOS</tag>
-         
-        <tag>Hadoop</tag>
          
          
            
              
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
           
         </display>
     </data>
@@ -37,6 +35,28 @@
         <pubTime>2016-06-10T16:12:02.000Z</pubTime>
         
         <tag>IntelliJ IDEA</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
+    <data>
+        <display>
+        <title>CentOS 卸载OpenJDK，安装OracleJDK</title>
+        <pubTime>2016-06-24T05:58:05.000Z</pubTime>
+        
+        <tag>CentOS</tag>
+         
+        <tag>JDK</tag>
          
          
            
@@ -69,28 +89,6 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>CentOS 卸载OpenJDK，安装OracleJDK</title>
-        <pubTime>2016-06-24T05:58:05.000Z</pubTime>
-        
-        <tag>CentOS</tag>
-         
-        <tag>JDK</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.itechq.com/blog/program/hadoop-install-on-centos.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
@@ -114,26 +112,6 @@
     
     
   <url>
-    <loc>http://www.itechq.com/blog/technology/centos-disable-default-firewall.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>CentOS7 关闭默认防火墙</title>
-        <pubTime>2016-08-28T11:08:28.000Z</pubTime>
-        
-        <tag>CentOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.itechq.com/blog/program/hadoop-folder-structure.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
@@ -153,28 +131,28 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
-    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>小米2S刷安卓原生系统</title>
-        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        <title>CentOS 7编译Hadoop 2.7.3</title>
+        <pubTime>2016-09-01T13:36:22.000Z</pubTime>
         
-        <tag>小米2S</tag>
+        <tag>CentOS</tag>
          
-        <tag>安卓原生</tag>
+        <tag>Hadoop</tag>
          
          
            
              
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://www.itechq.com/blog/technology/git-manual.html</loc>
@@ -185,6 +163,28 @@
         <pubTime>2016-06-11T02:58:00.000Z</pubTime>
         
         <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
+    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <data>
+        <display>
+        <title>Windows下ReviewBoard安装与配置</title>
+        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        
+        <tag>Windows</tag>
+         
+        <tag>Reviewboard</tag>
          
          
            
@@ -219,21 +219,21 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
+    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     <data>
         <display>
-        <title>Windows下ReviewBoard安装与配置</title>
-        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        <title>小米2S刷安卓原生系统</title>
+        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
         
-        <tag>Windows</tag>
+        <tag>小米2S</tag>
          
-        <tag>Reviewboard</tag>
+        <tag>安卓原生</tag>
          
          
            
              
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
           
         </display>
     </data>
