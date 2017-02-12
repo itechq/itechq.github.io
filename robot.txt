@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /css
+Disallow: /img
+Disallow: /js
+Disallow: /lib
+Sitemap: http://www.itechq.com/sitemap.xml
+Sitemap: http://www.itechq.com/baidusitemap.xml
