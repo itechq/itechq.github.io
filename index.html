@@ -50,17 +50,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -791,7 +809,7 @@
       
         
           <p>CentOS 7 默认使用的是firewall防火墙，若想使用iptables需重新安装一下，步骤如下。</p>
-<h2 id="关闭原有防火墙"><a href="#关闭原有防火墙" class="headerlink" title="关闭原有防火墙"></a>关闭原有防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 停止firewall</div><div class="line">systemctl stop firewalld.service </div><div class="line"></div><div class="line"># 禁止开机启动firewall</div><div class="line">systemctl disable firewalld.service</div><div class="line"></div><div class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</div><div class="line">Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.</div></pre></td></tr></table></figure>
+<h2 id="关闭原有防火墙"><a href="#关闭原有防火墙" class="headerlink" title="关闭原有防火墙"></a>关闭原有防火墙</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 停止firewall</span></div><div class="line">systemctl stop firewalld.service </div><div class="line"></div><div class="line"><span class="comment"># 禁止开机启动firewall</span></div><div class="line">systemctl disable firewalld.service</div><div class="line"></div><div class="line">Removed symlink <span class="regexp">/etc/</span>systemd<span class="regexp">/system/</span>dbus-org.fedoraproject.FirewallD1.service.</div><div class="line">Removed symlink <span class="regexp">/etc/</span>systemd<span class="regexp">/system/</span>basic.target.wants<span class="regexp">/firewalld.service.</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/technology/centos-disable-default-firewall.html#more" rel="contents">
@@ -1135,7 +1153,7 @@
       
         
           <p>CentOS系统自带OpenJDK，但是我们平时开发都是用OracleJDK，下面记录如何卸载OpenJDK，再安装OracleJDK，供以后查阅。</p>
-<h1 id="卸载OpenJDK"><a href="#卸载OpenJDK" class="headerlink" title="卸载OpenJDK"></a>卸载OpenJDK</h1><h2 id="查看CentOS是否安装JDK"><a href="#查看CentOS是否安装JDK" class="headerlink" title="查看CentOS是否安装JDK"></a>查看CentOS是否安装JDK</h2><p>使用<code>java -version</code>命令，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">openjdk version &quot;1.8.0_91&quot;</div><div class="line">OpenJDK Runtime Environment (build 1.8.0_91-b14)</div><div class="line">OpenJDK Server VM (build 25.91-b14, mixed mode)</div></pre></td></tr></table></figure></p>
+<h1 id="卸载OpenJDK"><a href="#卸载OpenJDK" class="headerlink" title="卸载OpenJDK"></a>卸载OpenJDK</h1><h2 id="查看CentOS是否安装JDK"><a href="#查看CentOS是否安装JDK" class="headerlink" title="查看CentOS是否安装JDK"></a>查看CentOS是否安装JDK</h2><p>使用<code>java -version</code>命令，如下所示：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">java </span>-version</div><div class="line">openjdk version <span class="string">"1.8.0_91"</span></div><div class="line">OpenJDK Runtime Environment (<span class="keyword">build </span><span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_91-<span class="keyword">b14)</span></div><div class="line">OpenJDK Server VM (<span class="keyword">build </span><span class="number">25</span>.<span class="number">91</span>-<span class="keyword">b14, </span>mixed mode)</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html#more" rel="contents">

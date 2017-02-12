@@ -50,17 +50,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -470,19 +488,19 @@ JDK 1.7.0_80
 <h3 id="安装Maven"><a href="#安装Maven" class="headerlink" title="安装Maven"></a>安装Maven</h3><ul>
 <li>安装命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install maven</div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y <span class="keyword">install</span> maven</div></pre></td></tr></table></figure>
 <ul>
 <li>检查命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q maven</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -<span class="selector-tag">q</span> maven</div></pre></td></tr></table></figure>
 <h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><ul>
 <li>安装命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev</div></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y <span class="keyword">install </span><span class="keyword">build-essential </span>autoconf automake libtool cmake zlib1g-dev pkg-<span class="built_in">config</span> libssl-dev</div></pre></td></tr></table></figure>
 <ul>
 <li>检查命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev</div></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q <span class="keyword">build-essential </span>autoconf automake libtool cmake zlib1g-dev pkg-<span class="built_in">config</span> libssl-dev</div></pre></td></tr></table></figure>
 <p><strong>注意:</strong></p>
 <p>执行安装命令后，会出现以下提示信息：</p>
 <blockquote>
@@ -491,47 +509,47 @@ JDK 1.7.0_80
 <ul>
 <li><code>No package build-essential available.</code>解决方案</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum groupinstall &apos;Development Tools&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">yum</span> groupinstall <span class="string">'Development Tools'</span></div></pre></td></tr></table></figure>
 <ul>
 <li><code>No package zlib1g-dev available.</code>解决方案</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install zlib</div><div class="line">yum install zlib-devel</div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> zlib</div><div class="line">yum <span class="keyword">install</span> zlib-devel</div></pre></td></tr></table></figure>
 <ul>
 <li><code>No package pkg-config available.</code>解决方案</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install pkgconfig</div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> pkgconfig</div></pre></td></tr></table></figure>
 <ul>
 <li><code>No package libssl-dev available.</code>解决方案</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install openssl</div><div class="line">yum install openssl-devel</div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> openssl</div><div class="line">yum <span class="keyword">install</span> openssl-devel</div></pre></td></tr></table></figure>
 <h3 id="安装ProtocolBuffer"><a href="#安装ProtocolBuffer" class="headerlink" title="安装ProtocolBuffer"></a>安装ProtocolBuffer</h3><ul>
 <li>安装命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install libprotobuf-dev protobuf-compiler</div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y <span class="keyword">install</span> libprotobuf-dev protobuf-compiler</div></pre></td></tr></table></figure>
 <ul>
 <li>检查命令</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q libprotobuf-dev protobuf-compiler</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -<span class="selector-tag">q</span> libprotobuf-dev protobuf-compiler</div></pre></td></tr></table></figure>
 <h3 id="安装Findbugs"><a href="#安装Findbugs" class="headerlink" title="安装Findbugs"></a>安装Findbugs</h3><ul>
 <li>下载Findbugs</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://kent.dl.sourceforge.net/project/findbugs/findbugs/3.0.1/findbugs-3.0.1.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http:<span class="regexp">//</span>kent.dl.sourceforge.net<span class="regexp">/project/</span>findbugs<span class="regexp">/findbugs/</span><span class="number">3.0</span>.<span class="number">1</span><span class="regexp">/findbugs-3.0.1.tar.gz</span></div></pre></td></tr></table></figure>
 <ul>
 <li>解压Findbugs到<code>/usr/share/findbugs</code>目录</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解压findbugs-3.0.1</div><div class="line">tar -zxvf findbugs-3.0.1.tar.gz</div><div class="line"></div><div class="line"># 重命名为findbugs</div><div class="line">mv findbugs-3.0.1 findbugs</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解压<span class="selector-tag">findbugs-3</span><span class="selector-class">.0</span><span class="selector-class">.1</span></div><div class="line"><span class="selector-tag">tar</span> <span class="selector-tag">-zxvf</span> <span class="selector-tag">findbugs-3</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></div><div class="line"></div><div class="line"># 重命名为<span class="selector-tag">findbugs</span></div><div class="line"><span class="selector-tag">mv</span> <span class="selector-tag">findbugs-3</span><span class="selector-class">.0</span><span class="selector-class">.1</span> <span class="selector-tag">findbugs</span></div></pre></td></tr></table></figure>
 <ul>
 <li>配置环境变量</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 编辑 ~/.bashrc文件</div><div class="line">vi ~/.bashrc</div><div class="line"></div><div class="line"># 配置Findbugs环境变量</div><div class="line">export FINDBUGS_HOME=/usr/share/findbugs</div><div class="line">export PATH=$FINDBUGS_HOME/bin:$PATH</div><div class="line"></div><div class="line"># 编译.bashrc文件使其生效</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 编辑 ~/.bashrc文件</span></div><div class="line">vi ~/.bashrc</div><div class="line"></div><div class="line"><span class="comment"># 配置Findbugs环境变量</span></div><div class="line"><span class="built_in">export</span> FINDBUGS_HOME=/usr/share/findbugs</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$FINDBUGS_HOME</span>/bin:<span class="variable">$PATH</span></div><div class="line"></div><div class="line"><span class="comment"># 编译.bashrc文件使其生效</span></div><div class="line"><span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
 <ul>
 <li>检查是否安装成功</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">findbug -version</div><div class="line"></div><div class="line"># 输出以下结果表示安装成功</div><div class="line">3.0.1</div></pre></td></tr></table></figure>
-<h2 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># Create binary distribution without native code and without documentation:</div><div class="line"></div><div class="line">$ mvn package -Pdist -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create binary distribution with native code and with documentation:</div><div class="line"></div><div class="line">$ mvn package -Pdist,native,docs -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create source distribution:</div><div class="line"></div><div class="line">$ mvn package -Psrc -DskipTests</div><div class="line"></div><div class="line"># Create source and binary distributions with native code and documentation:</div><div class="line"></div><div class="line">$ mvn package -Pdist,native,docs,src -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create a local staging version of the website (in /tmp/hadoop-site)</div><div class="line"></div><div class="line">$ mvn clean site; mvn site:stage -DstagingDirectory=/tmp/hadoop-site</div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">findbug -<span class="built_in">version</span></div><div class="line"></div><div class="line"><span class="comment"># 输出以下结果表示安装成功</span></div><div class="line"><span class="number">3.0</span><span class="number">.1</span></div></pre></td></tr></table></figure>
+<h2 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># Create binary distribution without native code <span class="keyword">and</span> without documentation:</div><div class="line"></div><div class="line">$ mvn <span class="keyword">package</span> <span class="title">-Pd</span>ist -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create binary distribution <span class="keyword">with</span> native code <span class="keyword">and</span> <span class="keyword">with</span> documentation:</div><div class="line"></div><div class="line">$ mvn <span class="keyword">package</span> <span class="title">-Pd</span>ist,native,docs -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create source distribution:</div><div class="line"></div><div class="line">$ mvn <span class="keyword">package</span> <span class="title">-Psrc -DskipTests</span></div><div class="line"></div><div class="line"># Create source <span class="keyword">and</span> binary distributions <span class="keyword">with</span> native code <span class="keyword">and</span> documentation:</div><div class="line"></div><div class="line">$ mvn <span class="keyword">package</span> <span class="title">-Pd</span>ist,native,docs,src -DskipTests -Dtar</div><div class="line"></div><div class="line"># Create a local staging version <span class="keyword">of</span> the website (<span class="keyword">in</span> /tmp/hadoop-site)</div><div class="line"></div><div class="line">$ mvn clean site; mvn site:stage -DstagingDirectory=/tmp/hadoop-site</div></pre></td></tr></table></figure>
 <p>编辑完成后，会在<code>[HADOOP_SOURCE_HOME]/hadoop-dist/target</code>目录生成相关发布包，如下图所示：</p>
 <p><img src="http://o7xt53rmp.bkt.clouddn.com/493e0c0dbe75ec2d/ca77fa67656f46818ead75716102d1df.png" alt="493e0c0dbe75ec2d/ca77fa67656f46818ead75716102d1df.png"></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Failed-to-execute-goal-org-apache-maven-plugins-maven-antrun-plugin-1-7"><a href="#Failed-to-execute-goal-org-apache-maven-plugins-maven-antrun-plugin-1-7" class="headerlink" title="Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:1.7"></a>Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:1.7</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:1.7:run (make) on project hadoop-common: An Ant BuildException has occured: exec returned: 1</div><div class="line">[ERROR] around Ant part ...&lt;exec dir=&quot;/opt/software/hadoop-2.7.3-src/hadoop-common-project/hadoop-common/target/native&quot; executable=&quot;cmake&quot; failonerror=&quot;true&quot;&gt;... @ 4:134 in /opt/software/hadoop-2.7.3-src/hadoop-common-project/hadoop-common/target/antrun/build-main.xml</div><div class="line">[ERROR] -&gt; [Help 1]</div><div class="line">[ERROR] </div><div class="line">[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch. </div><div class="line">[ERROR] Re-run Maven using the -X switch to enable full debug logging. </div><div class="line">[ERROR] </div><div class="line">[ERROR] For more information about the errors and possible solutions, please read the following articles: </div><div class="line">[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException </div><div class="line">[ERROR]  </div><div class="line">[ERROR] After correcting the problems, you can resume the build with the command </div><div class="line">[ERROR]   mvn &lt;goals&gt; -rf :hadoop-common</div></pre></td></tr></table></figure>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Failed-to-execute-goal-org-apache-maven-plugins-maven-antrun-plugin-1-7"><a href="#Failed-to-execute-goal-org-apache-maven-plugins-maven-antrun-plugin-1-7" class="headerlink" title="Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:1.7"></a>Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:1.7</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to <span class="keyword">execute</span> goal org.apache.maven.plugins:maven-antrun-<span class="keyword">plugin</span>:<span class="number">1.7</span>:run (make) <span class="keyword">on</span> <span class="keyword">project</span> hadoop-common: An Ant BuildException has occured: exec returned: <span class="number">1</span></div><div class="line">[<span class="keyword">ERROR</span>] around Ant part ...&lt;exec dir=<span class="string">"/opt/software/hadoop-2.7.3-src/hadoop-common-project/hadoop-common/target/native"</span> executable=<span class="string">"cmake"</span> failonerror=<span class="string">"true"</span>&gt;... @ <span class="number">4</span>:<span class="number">134</span> <span class="keyword">in</span> /opt/software/hadoop<span class="number">-2.7</span><span class="number">.3</span>-src/hadoop-common-<span class="keyword">project</span>/hadoop-common/target/antrun/<span class="keyword">build</span>-main.xml</div><div class="line">[<span class="keyword">ERROR</span>] -&gt; [<span class="keyword">Help</span> <span class="number">1</span>]</div><div class="line">[<span class="keyword">ERROR</span>] </div><div class="line">[<span class="keyword">ERROR</span>] <span class="keyword">To</span> see the <span class="keyword">full</span> stack <span class="keyword">trace</span> <span class="keyword">of</span> the <span class="keyword">errors</span>, re-run Maven <span class="keyword">with</span> the -e switch. </div><div class="line">[<span class="keyword">ERROR</span>] Re-run Maven <span class="keyword">using</span> the -X <span class="keyword">switch</span> <span class="keyword">to</span> <span class="keyword">enable</span> <span class="keyword">full</span> debug logging. </div><div class="line">[<span class="keyword">ERROR</span>] </div><div class="line">[<span class="keyword">ERROR</span>] <span class="keyword">For</span> more information about the <span class="keyword">errors</span> <span class="keyword">and</span> possible solutions, please <span class="keyword">read</span> the <span class="keyword">following</span> articles: </div><div class="line">[<span class="keyword">ERROR</span>] [<span class="keyword">Help</span> <span class="number">1</span>] <span class="keyword">http</span>://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException </div><div class="line">[<span class="keyword">ERROR</span>]  </div><div class="line">[<span class="keyword">ERROR</span>] <span class="keyword">After</span> correcting the problems, you can <span class="keyword">resume</span> the <span class="keyword">build</span> <span class="keyword">with</span> the command </div><div class="line">[<span class="keyword">ERROR</span>]   mvn &lt;goals&gt; -rf :hadoop-common</div></pre></td></tr></table></figure>
 <ul>
 <li>问题原因</li>
 </ul>
