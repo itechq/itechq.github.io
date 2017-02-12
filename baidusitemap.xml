@@ -6,16 +6,16 @@
     
     
   <url>
-    <loc>http://www.itechq.com/blog/program/hadoop-install-on-centos.html</loc>
+    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>CentOS 7安装Hadoop 2.7.3</title>
-        <pubTime>2016-08-27T07:52:34.000Z</pubTime>
+        <title>CentOS 7编译Hadoop 2.7.3</title>
+        <pubTime>2016-09-01T13:36:22.000Z</pubTime>
         
-        <tag>Hadoop</tag>
-         
         <tag>CentOS</tag>
+         
+        <tag>Hadoop</tag>
          
          
            
@@ -27,26 +27,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://www.itechq.com/blog/technology/intellij-idea-hotkey.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>IntelliJ IDEA 快捷键收录</title>
-        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
-        
-        <tag>IntelliJ IDEA</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://www.itechq.com/blog/notes/find-process-name-by-port.html</loc>
@@ -69,21 +49,19 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/program/hadoop-compile-on-centos.html</loc>
+    <loc>http://www.itechq.com/blog/technology/intellij-idea-hotkey.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>CentOS 7编译Hadoop 2.7.3</title>
-        <pubTime>2016-09-01T13:36:22.000Z</pubTime>
+        <title>IntelliJ IDEA 快捷键收录</title>
+        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
         
-        <tag>Hadoop</tag>
-         
-        <tag>CentOS</tag>
+        <tag>IntelliJ IDEA</tag>
          
          
            
              
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
           
         </display>
     </data>
@@ -112,15 +90,16 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.itechq.com/blog/program/hadoop-folder-structure.html</loc>
+    <loc>http://www.itechq.com/blog/program/hadoop-install-on-centos.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>Hadoop目录结构介绍</title>
-        <pubTime>2016-09-02T14:35:13.000Z</pubTime>
+        <title>CentOS 7安装Hadoop 2.7.3</title>
+        <pubTime>2016-08-27T07:52:34.000Z</pubTime>
         
+        <tag>CentOS</tag>
+         
         <tag>Hadoop</tag>
          
          
@@ -132,6 +111,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://www.itechq.com/blog/technology/centos-disable-default-firewall.html</loc>
@@ -153,23 +133,43 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
-    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <loc>http://www.itechq.com/blog/program/hadoop-folder-structure.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>Windows下ReviewBoard安装与配置</title>
-        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        <title>Hadoop目录结构介绍</title>
+        <pubTime>2016-09-02T14:35:13.000Z</pubTime>
         
-        <tag>Windows</tag>
-         
-        <tag>Reviewboard</tag>
+        <tag>Hadoop</tag>
          
          
            
              
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.itechq.com/blog/program/user-define-qiniu-sync-for-markdown.html</loc>
+    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <data>
+        <display>
+        <title>七牛云存储同步工具——为Markdown写作诞生</title>
+        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
+        
+        <tag>七牛云存储</tag>
+         
+        <tag>Markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
@@ -197,28 +197,6 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/program/user-define-qiniu-sync-for-markdown.html</loc>
-    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
-    <data>
-        <display>
-        <title>七牛云存储同步工具——为Markdown写作诞生</title>
-        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
-        
-        <tag>七牛云存储</tag>
-         
-        <tag>Markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     <data>
@@ -234,6 +212,28 @@
            
              
               <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/technology/reviewboard-installing-on-windows.html</loc>
+    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <data>
+        <display>
+        <title>Windows下ReviewBoard安装与配置</title>
+        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        
+        <tag>Windows</tag>
+         
+        <tag>Reviewboard</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
           
         </display>
     </data>
