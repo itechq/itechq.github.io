@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.itechq.com/"/>
-  <updated>2016-11-19T01:56:34.019Z</updated>
+  <updated>2017-02-12T12:47:59.881Z</updated>
   <id>http://www.itechq.com/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>升级Hexo及NexT主题笔记</title>
+    <link href="http://www.itechq.com/blog/notes/hexo-next-theme-update.html"/>
+    <id>http://www.itechq.com/blog/notes/hexo-next-theme-update.html</id>
+    <published>2017-02-12T11:23:44.000Z</published>
+    <updated>2017-02-12T12:47:59.881Z</updated>
+    
+    <content type="html"><![CDATA[<p>用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>搭建博客差不多一年了，使用<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>主题，文章没写几篇，2017争取每周至少写一篇博客。今天对博客空间做了一次版本升级，由于原来初次配置博客时，<code>站点配置文件</code>及<code>主题配置文件</code>没有分离，当时还修改了<code>NexT</code>主题部分源码，所以本次升级基本上是重新安装了一遍。</p>
+<h1 id="升级目标"><a href="#升级目标" class="headerlink" title="升级目标"></a>升级目标</h1><ul>
+<li>Hexo版本由<code>3.2.0</code>升到<code>3.2.2</code></li>
+<li>NexT版本由<code>5.0.0</code>升到<code>5.1.0</code></li>
+<li>主题配置文件分离（便于以后主题升级）</li>
+<li>集成<a href="https://www.algolia.com/" target="_blank" rel="external">Algolia</a>搜索引擎</li>
+</ul>
+<a id="more"></a>
+<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><h2 id="安装Hexo，参考官方步骤"><a href="#安装Hexo，参考官方步骤" class="headerlink" title="安装Hexo，参考官方步骤"></a>安装<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>，参考官方步骤</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install </span>hexo-cli -g</div><div class="line">hexo init <span class="keyword">blog</span></div><div class="line">cd <span class="keyword">blog</span></div><div class="line">npm <span class="keyword">install</span></div><div class="line">hexo server</div></pre></td></tr></table></figure>
+<h2 id="安装NexT主题，参考官方文档"><a href="#安装NexT主题，参考官方文档" class="headerlink" title="安装NexT主题，参考官方文档"></a>安装<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>主题，参考官方文档</h2><blockquote>
+<p>官方步骤很详细，这里不再描述，<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">参考链接</a>。</p>
+</blockquote>
+<h2 id="迁移配置文件"><a href="#迁移配置文件" class="headerlink" title="迁移配置文件"></a>迁移配置文件</h2><h3 id="站点配置文件迁移"><a href="#站点配置文件迁移" class="headerlink" title="站点配置文件迁移"></a>站点配置文件迁移</h3><p>通过文件对比迁移原有站点配置文件到新站点配置文件。</p>
+<h3 id="主题配置文件迁移"><a href="#主题配置文件迁移" class="headerlink" title="主题配置文件迁移"></a>主题配置文件迁移</h3><p>由于原来直接修改主题下的<code>_config.yml</code>配置文件，导致升级主题时不能直接pull，需要解决冲突问题，官方给出替代<a href="https://github.com/iissnan/hexo-theme-next/issues/328" target="_blank" rel="external">解决方案</a>。基本思路是利用Hexo 3及以上版本提供的<a href="https://hexo.io/docs/data-files.html" target="_blank" rel="external">Data Files</a>功能，将主题配置文件迁移到<code>source/_data</code>目录下。我是全新安装，所以将原来<code>_config.yml</code>拷贝一份到<code>source/_data</code>下，并重命名为<code>next.yml</code>。在将原有主题配置文件内容迁移到<code>next.yml</code>里。</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/9d018280d96e25f4/a52ce5dce6344a9f9ec8dc9f39f0cab6.png" alt="9d018280d96e25f4/a52ce5dce6344a9f9ec8dc9f39f0cab6.png"></p>
+<h2 id="集成Algolia搜索引擎"><a href="#集成Algolia搜索引擎" class="headerlink" title="集成Algolia搜索引擎"></a>集成<a href="https://www.algolia.com/" target="_blank" rel="external">Algolia</a>搜索引擎</h2><blockquote>
+<p>参考<a href="http://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="external">官方配置手册</a>。</p>
+</blockquote>
+<p>到此，原来博客站点配置全部迁移完成，整个配置迁移遵循默认配置以新版本为准，自定义配置以老版本为准的原则。</p>
+<h2 id="迁移原有博客文章及资源文件"><a href="#迁移原有博客文章及资源文件" class="headerlink" title="迁移原有博客文章及资源文件"></a>迁移原有博客文章及资源文件</h2><blockquote>
+<p>拷贝原来博客文件及资源文件到新博客下。</p>
+</blockquote>
+<h2 id="部署博客到Github及Coding"><a href="#部署博客到Github及Coding" class="headerlink" title="部署博客到Github及Coding"></a>部署博客到<code>Github</code>及<code>Coding</code></h2><p>访问新版博客，基本效果和原来一样，如下图所示：<br><img src="http://o7xt53rmp.bkt.clouddn.com/9d018280d96e25f4/b5ab2060b62f459c8bb4e9c1e3c8b210.png" alt="9d018280d96e25f4/b5ab2060b62f459c8bb4e9c1e3c8b210.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用&lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;搭建博客差不多一年了，使用&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot;&gt;NexT&lt;/a&gt;主题，文章没写几篇，2017争取每周至少写一篇博客。今天对博客空间做了一次版本升级，由于原来初次配置博客时，&lt;code&gt;站点配置文件&lt;/code&gt;及&lt;code&gt;主题配置文件&lt;/code&gt;没有分离，当时还修改了&lt;code&gt;NexT&lt;/code&gt;主题部分源码，所以本次升级基本上是重新安装了一遍。&lt;/p&gt;
+&lt;h1 id=&quot;升级目标&quot;&gt;&lt;a href=&quot;#升级目标&quot; class=&quot;headerlink&quot; title=&quot;升级目标&quot;&gt;&lt;/a&gt;升级目标&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Hexo版本由&lt;code&gt;3.2.0&lt;/code&gt;升到&lt;code&gt;3.2.2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;NexT版本由&lt;code&gt;5.0.0&lt;/code&gt;升到&lt;code&gt;5.1.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;主题配置文件分离（便于以后主题升级）&lt;/li&gt;
+&lt;li&gt;集成&lt;a href=&quot;https://www.algolia.com/&quot;&gt;Algolia&lt;/a&gt;搜索引擎&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="notes" scheme="http://www.itechq.com/categories/notes/"/>
+    
+    
+      <category term="Hexo" scheme="http://www.itechq.com/tags/Hexo/"/>
+    
+      <category term="NexT" scheme="http://www.itechq.com/tags/NexT/"/>
+    
+  </entry>
   
   <entry>
     <title>Hadoop目录结构介绍</title>
