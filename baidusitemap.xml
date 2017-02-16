@@ -4,8 +4,50 @@
 
     
   <url>
+    <loc>http://www.itechq.com/blog/program/nodejs-common-command.html</loc>
+    <lastmod>2017-02-16T12:10:43.227Z</lastmod>
+    <data>
+        <display>
+        <title>npm常用命令</title>
+        <pubTime>2017-02-16T08:36:04.000Z</pubTime>
+        
+        <tag>NodeJS</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/program/nodejs-install-on-windows.html</loc>
+    <lastmod>2017-02-16T12:10:43.226Z</lastmod>
+    <data>
+        <display>
+        <title>Windows安装配置NodeJS</title>
+        <pubTime>2017-02-15T01:23:38.000Z</pubTime>
+        
+        <tag>NodeJS</tag>
+         
+         
+           
+             
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.itechq.com/blog/notes/hexo-next-theme-update.html</loc>
-    <lastmod>2017-02-12T13:52:15.634Z</lastmod>
+    <lastmod>2017-02-16T12:10:43.225Z</lastmod>
     <data>
         <display>
         <title>升级Hexo及NexT主题笔记</title>
@@ -36,68 +78,6 @@
         <pubTime>2016-08-28T11:08:28.000Z</pubTime>
         
         <tag>CentOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/technology/intellij-idea-hotkey.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>IntelliJ IDEA 快捷键收录</title>
-        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
-        
-        <tag>IntelliJ IDEA</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/notes/find-process-name-by-port.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>Windows根据端口号查找进程名</title>
-        <pubTime>2016-06-12T12:54:49.000Z</pubTime>
-        
-        <tag>Windows</tag>
-         
-         
-           
-             
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
-    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
-    <data>
-        <display>
-        <title>CentOS 卸载OpenJDK，安装OracleJDK</title>
-        <pubTime>2016-06-24T05:58:05.000Z</pubTime>
-        
-        <tag>CentOS</tag>
-         
-        <tag>JDK</tag>
          
          
            
@@ -154,6 +134,7 @@
     </url>
 
     
+    
   <url>
     <loc>http://www.itechq.com/blog/program/hadoop-folder-structure.html</loc>
     <lastmod>2016-11-19T01:56:34.019Z</lastmod>
@@ -174,24 +155,85 @@
     </url>
 
     
-    
-    
   <url>
-    <loc>http://www.itechq.com/blog/program/user-define-qiniu-sync-for-markdown.html</loc>
-    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <loc>http://www.itechq.com/blog/technology/intellij-idea-hotkey.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
     <data>
         <display>
-        <title>七牛云存储同步工具——为Markdown写作诞生</title>
-        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
+        <title>IntelliJ IDEA 快捷键收录</title>
+        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
         
-        <tag>七牛云存储</tag>
-         
-        <tag>Markdown</tag>
+        <tag>IntelliJ IDEA</tag>
          
          
            
              
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.itechq.com/blog/technology/centos-unistall-openjdk-and-install-oraclejdk.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
+    <data>
+        <display>
+        <title>CentOS 卸载OpenJDK，安装OracleJDK</title>
+        <pubTime>2016-06-24T05:58:05.000Z</pubTime>
+        
+        <tag>CentOS</tag>
+         
+        <tag>JDK</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/notes/find-process-name-by-port.html</loc>
+    <lastmod>2016-11-19T01:56:34.019Z</lastmod>
+    <data>
+        <display>
+        <title>Windows根据端口号查找进程名</title>
+        <pubTime>2016-06-12T12:54:49.000Z</pubTime>
+        
+        <tag>Windows</tag>
+         
+         
+           
+             
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
+    <lastmod>2016-11-19T01:56:34.003Z</lastmod>
+    <data>
+        <display>
+        <title>小米2S刷安卓原生系统</title>
+        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        
+        <tag>小米2S</tag>
+         
+        <tag>安卓原生</tag>
+         
+         
+           
+             
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
           
         </display>
     </data>
@@ -219,21 +261,21 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/notes/xiaomi-flash-google-rom.html</loc>
+    <loc>http://www.itechq.com/blog/program/user-define-qiniu-sync-for-markdown.html</loc>
     <lastmod>2016-11-19T01:56:34.003Z</lastmod>
     <data>
         <display>
-        <title>小米2S刷安卓原生系统</title>
-        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        <title>七牛云存储同步工具——为Markdown写作诞生</title>
+        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
         
-        <tag>小米2S</tag>
+        <tag>七牛云存储</tag>
          
-        <tag>安卓原生</tag>
+        <tag>Markdown</tag>
          
          
            
              
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
