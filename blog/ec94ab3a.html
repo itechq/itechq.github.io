@@ -1,1 +1,1225 @@
-<!doctype html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Windows,Reviewboard,"><link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="安装准备安装文件清单Mysql 5.6 下载链接Apache 2.2 下载链接Python 2.7 下载链接mod_python 3.3 下载地址py27-pysvn-svn 下载地址 参考链接setuptools 下载地址 参考链接patch-2.5.9.7-setup 下载地址 参考链接memcached 下载地址python-memcached 下载地址 参考地址mysql-python 下"><meta property="og:type" content="article"><meta property="og:title" content="Windows下ReviewBoard安装与配置"><meta property="og:url" content="http://www.itechq.com/blog/ec94ab3a.html"><meta property="og:site_name" content="小牧家园"><meta property="og:description" content="安装准备安装文件清单Mysql 5.6 下载链接Apache 2.2 下载链接Python 2.7 下载链接mod_python 3.3 下载地址py27-pysvn-svn 下载地址 参考链接setuptools 下载地址 参考链接patch-2.5.9.7-setup 下载地址 参考链接memcached 下载地址python-memcached 下载地址 参考地址mysql-python 下"><meta property="og:updated_time" content="2017-03-23T13:18:59.446Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Windows下ReviewBoard安装与配置"><meta name="twitter:description" content="安装准备安装文件清单Mysql 5.6 下载链接Apache 2.2 下载链接Python 2.7 下载链接mod_python 3.3 下载地址py27-pysvn-svn 下载地址 参考链接setuptools 下载地址 参考链接patch-2.5.9.7-setup 下载地址 参考链接memcached 下载地址python-memcached 下载地址 参考地址mysql-python 下"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"6288157089562887000",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://www.itechq.com/blog/ec94ab3a.html"><title>Windows下ReviewBoard安装与配置 | 小牧家园</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div style="display:none"><script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script></div><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">小牧家园</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">墙外的世界</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/ec94ab3a.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jason"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="小牧家园"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">Windows下ReviewBoard安装与配置</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-28T14:46:58+08:00">2016-05-28 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">technology</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/blog/ec94ab3a.html#comments" itemprop="discussionUrl"><span class="post-comments-count ds-thread-count" data-thread-key="blog/ec94ab3a.html" itemprop="commentCount"></span> </a></span><span id="/blog/ec94ab3a.html" class="leancloud_visitors" data-flag-title="Windows下ReviewBoard安装与配置"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数 </span><span class="leancloud-visitors-count"></span></span></div></header><div class="post-body" itemprop="articleBody"><h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><p>安装文件清单</p><ul><li>Mysql 5.6 <a href="http://cdn.mysql.com/Downloads/MySQLInstaller/mysql-installer-community-5.6.26.0.msi" target="_blank" rel="external">下载链接</a></li><li>Apache 2.2 <a href="http://archive.apache.org/dist/httpd/" target="_blank" rel="external">下载链接</a></li><li>Python 2.7 <a href="https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi" target="_blank" rel="external">下载链接</a></li><li>mod_python 3.3 <a href="http://archive.apache.org/dist/httpd/modpython/win/3.3.1/mod_python-3.3.1.win32-py2.5-Apache2.2.exe" target="_blank" rel="external">下载地址</a></li><li>py27-pysvn-svn <a href="http://pysvn.tigris.org/files/documents/1233/49404/py27-pysvn-svn1811-1.7.10-1584.exe" target="_blank" rel="external">下载地址</a> <a href="http://pysvn.tigris.org/servlets/ProjectDocumentList?folderID=1768" target="_blank" rel="external">参考链接</a></li><li>setuptools <a href="https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20" target="_blank" rel="external">下载地址</a> <a href="https://pypi.python.org/pypi/setuptools/0.6c11" target="_blank" rel="external">参考链接</a></li><li>patch-2.5.9.7-setup <a href="http://ncu.dl.sourceforge.net/project/gnuwin32/patch/2.5.9-7/patch-2.5.9-7-setup.exe" target="_blank" rel="external">下载地址</a> <a href="http://sourceforge.net/projects/gnuwin32/files/patch/2.5.9-7/" target="_blank" rel="external">参考链接</a></li><li>memcached <a href="http://s3.amazonaws.com/downloads.northscale.com/memcached-win64-1.4.4-14.zip" target="_blank" rel="external">下载地址</a></li><li>python-memcached <a href="ftp://ftp.tummy.com/pub/python-memcached/python-memcached-latest.tar.gz" target="_blank" rel="external">下载地址</a> <a href="http://www.tummy.com/software/python-memcached/" target="_blank" rel="external">参考地址</a></li><li>mysql-python <a href="https://pypi.python.org/packages/2.7/M/MySQL-python/MySQL-python-1.2.5.win32-py2.7.exe#md5=6f43f42516ea26e79cfb100af69a925e" target="_blank" rel="external">下载地址</a> <a href="https://pypi.python.org/pypi/MySQL-python/1.2.5" target="_blank" rel="external">参考链接</a></li><li>pycrypto-2.6.1 <a href="http://www.voidspace.org.uk/python/pycrypto-2.6.1/" target="_blank" rel="external">下载地址</a></li><li>mod_wsgi-win32-ap22py27-3.3.so <a href="https://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-win32-ap22py27-3.3.so" target="_blank" rel="external">下载地址</a></li><li>RBTools <a href="https://downloads.reviewboard.org/releases/RBTools/0.7/RBTools-0.7.4.exe" target="_blank" rel="external">下载地址</a></li></ul><a id="more"></a><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-安装Mysql"><a href="#1-安装Mysql" class="headerlink" title="1. 安装Mysql"></a>1. 安装Mysql</h3><p>安装完成后，注意修改默认编码格式为UTF-8<br></p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">show variables like <span class="emphasis">'character%'</span>;</div><div class="line"></div><div class="line"><span class="section">#显示如下信息</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div><div class="line"><span class="section">| Variable_name            | Value                                                   |</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div><div class="line">| character<span class="emphasis">_set_</span>client     | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>connection | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>database   | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>filesystem | binary                                                  |</div><div class="line">| character<span class="emphasis">_set_</span>results    | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>server     | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>system     | utf8                                                    |</div><div class="line"><span class="section">| character_sets_dir       | C:\Program Files\MySQL\MySQL Server 5.6\share\charsets\ |</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div></pre></td></tr></table></figure><p></p><h3 id="2-安装Apache"><a href="#2-安装Apache" class="headerlink" title="2. 安装Apache"></a>2. 安装Apache</h3><p>完成后确认在Windows服务中启动并且在浏览器中输入localhost检查是否启动正常。</p><h3 id="3-安装Python"><a href="#3-安装Python" class="headerlink" title="3. 安装Python"></a>3. 安装Python</h3><p>注意要把python27和python27/scripts目录放到环境变量中</p><h3 id="4-安装mod-python-3-3-1-win32-py2-7-exe"><a href="#4-安装mod-python-3-3-1-win32-py2-7-exe" class="headerlink" title="4. 安装mod_python-3.3.1.win32-py2.7.exe"></a>4. 安装mod_python-3.3.1.win32-py2.7.exe</h3><p>注意：安装mod_python的时候，需要停掉apache，安装后请检查apache的modules目录下是否有mod_python.so，如果没有请检查安装是否过程是否有问题</p><h3 id="5-安装py27-pysvn-svn1811-1-7-10-1584-exe"><a href="#5-安装py27-pysvn-svn1811-1-7-10-1584-exe" class="headerlink" title="5. 安装py27-pysvn-svn1811-1.7.10-1584.exe"></a>5. 安装py27-pysvn-svn1811-1.7.10-1584.exe</h3><h3 id="6-安装setuptools-0-6c11-win32-py2-7-exe"><a href="#6-安装setuptools-0-6c11-win32-py2-7-exe" class="headerlink" title="6. 安装setuptools-0.6c11.win32-py2.7.exe"></a>6. 安装setuptools-0.6c11.win32-py2.7.exe</h3><h3 id="7-安装patch-2-5-9-7-setup-exe"><a href="#7-安装patch-2-5-9-7-setup-exe" class="headerlink" title="7. 安装patch-2.5.9-7-setup.exe"></a>7. 安装patch-2.5.9-7-setup.exe</h3><h3 id="8-安装memcached"><a href="#8-安装memcached" class="headerlink" title="8. 安装memcached"></a>8. 安装memcached</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#1</span>.解压<span class="selector-tag">memcached-win64-1</span><span class="selector-class">.4</span><span class="selector-class">.4-14</span><span class="selector-class">.zip</span>到<span class="selector-tag">E</span>:\<span class="selector-tag">Tools</span>\<span class="selector-tag">memcached</span></div><div class="line"></div><div class="line"><span class="selector-id">#2</span>.进入<span class="selector-tag">E</span>:\<span class="selector-tag">Tools</span>\<span class="selector-tag">memcached</span></div><div class="line"></div><div class="line"><span class="selector-id">#3</span>.执行命令，安装<span class="selector-tag">memcached</span>为系统服务</div><div class="line"><span class="selector-tag">memcached</span><span class="selector-class">.exe</span> <span class="selector-tag">-d</span> <span class="selector-tag">install</span></div></pre></td></tr></table></figure><h3 id="9-安装python-memcached"><a href="#9-安装python-memcached" class="headerlink" title="9. 安装python-memcached"></a>9. 安装python-memcached</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#1</span>. 解压<span class="selector-tag">python-memcached-latest</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></div><div class="line"></div><div class="line"><span class="selector-id">#2</span>. 执行安装命令</div><div class="line"><span class="selector-tag">python</span> <span class="selector-tag">setup</span><span class="selector-class">.py</span> <span class="selector-tag">install</span></div></pre></td></tr></table></figure><h3 id="10-安装MySQL-python-1-2-5-win32-py2-7-exe"><a href="#10-安装MySQL-python-1-2-5-win32-py2-7-exe" class="headerlink" title="10. 安装MySQL-python-1.2.5.win32-py2.7.exe"></a>10. 安装MySQL-python-1.2.5.win32-py2.7.exe</h3><h3 id="11-安装pycrypto-2-6-1-win32-py2-7-exe"><a href="#11-安装pycrypto-2-6-1-win32-py2-7-exe" class="headerlink" title="11. 安装pycrypto-2.6.1.win32-py2.7.exe"></a>11. 安装pycrypto-2.6.1.win32-py2.7.exe</h3><p>解决编译安装时出现以下错误:<br></p><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Downloading https://pypi.python.org/packages/source/p/pycrypto/pycrypto<span class="string">-2</span>.6.1.ta</div><div class="line">r.gz#md5=55a61a054aa66812daf5161a0d5d7eda</div><div class="line">Processing pycrypto<span class="string">-2</span>.6.1.tar.gz</div><div class="line">Running pycrypto<span class="string">-2</span>.6.1\setup.py -q bdist_egg --dist-dir c:\users\ch\appdata\loca</div><div class="line">l\temp\easy_install-sby0sc\pycrypto<span class="string">-2</span>.6.1\egg-dist-tmp-wvzthp</div><div class="line">warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.</div><div class="line"></div><div class="line">gcc: error: unrecognized command line option '-mno-cygwin'</div><div class="line"><span class="keyword">error: </span>Setup script exited with error: command 'C:\\cygwin64\\bin\\gcc.exe' fail</div><div class="line">ed with exit status 1</div></pre></td></tr></table></figure><p></p><h3 id="12-安装ReviewBoard"><a href="#12-安装ReviewBoard" class="headerlink" title="12. 安装ReviewBoard"></a>12. 安装ReviewBoard</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#执行命令</span></div><div class="line">easy_install ReviewBoard</div><div class="line"></div><div class="line"><span class="meta">#安装指定版本ReviewBoard</span></div><div class="line">easy_install <span class="string">"ReviewBoard&lt;2.0"</span></div></pre></td></tr></table></figure><h2 id="ReviewBoard配置"><a href="#ReviewBoard配置" class="headerlink" title="ReviewBoard配置"></a>ReviewBoard配置</h2><h3 id="1-创建数据库及用户名"><a href="#1-创建数据库及用户名" class="headerlink" title="1. 创建数据库及用户名"></a>1. 创建数据库及用户名</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#创建数据库</span></div><div class="line"><span class="attribute">create</span> database reviewboard character set utf8;</div><div class="line"></div><div class="line"><span class="comment">#创建用户（下面会用到）</span></div><div class="line"><span class="attribute">create</span> user <span class="string">'reviewboard'</span>@<span class="string">'localhost'</span> identified by <span class="string">'reviewboard'</span>;</div><div class="line"></div><div class="line"><span class="comment">#给用户授权</span></div><div class="line"><span class="attribute">grant</span> all privileges <span class="literal">on</span> <span class="regexp">reviewboard.*</span> to <span class="string">'reviewboard'</span>@<span class="string">'localhost'</span>;</div></pre></td></tr></table></figure><h3 id="2-创建站点"><a href="#2-创建站点" class="headerlink" title="2. 创建站点"></a>2. 创建站点</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 执行命令</span></div><div class="line">rb-site install e:\tools\reviews</div><div class="line"></div><div class="line"><span class="meta">#按要求填写相关要素即可</span></div></pre></td></tr></table></figure><h3 id="3-Apache配置"><a href="#3-Apache配置" class="headerlink" title="3. Apache配置"></a>3. Apache配置</h3><ul><li><p>add mod_python.so 到httpd.conf中<br><code>LoadModule python_module modules/mod_python.so</code></p></li><li><p>add mod_wsgi-win32-ap22py27-3.3.so 到httpd.conf中<br><code>LoadModule wsgi_module modules/mod_wsgi-win32-ap22py27-3.3.so</code></p></li><li><p>将e:\tools\reviews\conf\apache-wsgi.conf内容添加到 vhosts到httpd-vhosts.conf中</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="section">&lt;VirtualHost *:84&gt;</span></div><div class="line">	<span class="attribute"><span class="nomarkup">ServerName</span></span> reviews.com</div><div class="line">	<span class="attribute"><span class="nomarkup">DocumentRoot</span></span> <span class="string">"E:/Tools/reviews/htdocs"</span></div><div class="line"></div><div class="line">	<span class="comment"># Error handlers</span></div><div class="line">	<span class="attribute"><span class="nomarkup">ErrorDocument</span></span> 500 /errordocs/500.html</div><div class="line"></div><div class="line">	<span class="attribute">WSGIPassAuthorization</span> <span class="literal">On</span></div><div class="line">	<span class="attribute">WSGIScriptAlias</span> <span class="string">"/"</span> <span class="string">"E:/Tools/reviews/htdocs/reviewboard.wsgi/"</span></div><div class="line"></div><div class="line">	<span class="section">&lt;Directory "E:/Tools/reviews/htdocs"&gt;</span></div><div class="line">		<span class="attribute">AllowOverride</span> <span class="literal">All</span></div><div class="line">		<span class="attribute"><span class="nomarkup">Options</span></span> -Indexes +FollowSymLinks</div><div class="line">		<span class="attribute"><span class="nomarkup">Allow</span></span> from <span class="literal">all</span></div><div class="line">	<span class="section">&lt;/Directory&gt;</span></div><div class="line"></div><div class="line">	<span class="comment"># Prevent the server from processing or allowing the rendering of</span></div><div class="line">	<span class="comment"># certain file types.</span></div><div class="line">	<span class="section">&lt;Location "/media/uploaded"&gt;</span></div><div class="line">		<span class="attribute"><span class="nomarkup">SetHandler</span></span> None</div><div class="line">		<span class="attribute"><span class="nomarkup">Options</span></span> None</div><div class="line"></div><div class="line">		<span class="attribute">AddType</span> text/plain .html .htm .shtml .php .php3 .php4 .php5 .phps .asp</div><div class="line">		<span class="attribute">AddType</span> text/plain .pl .py .fcgi .cgi .phtml .phtm .pht .jsp .sh .rb</div><div class="line"></div><div class="line">		<span class="section">&lt;IfModule mod_php5.c&gt;</span></div><div class="line">			<span class="attribute">php_flag</span> engine <span class="literal">off</span></div><div class="line">		<span class="section">&lt;/IfModule&gt;</span></div><div class="line">	<span class="section">&lt;/Location&gt;</span></div><div class="line"></div><div class="line">	<span class="comment"># Alias static media requests to filesystem</span></div><div class="line">	<span class="attribute">Alias</span> /media <span class="string">"E:/Tools/reviews/htdocs/media"</span></div><div class="line">	<span class="attribute">Alias</span> /static <span class="string">"E:/Tools/reviews/htdocs/static"</span></div><div class="line">	<span class="attribute">Alias</span> /errordocs <span class="string">"E:/Tools/reviews/htdocs/errordocs"</span></div><div class="line">	<span class="attribute">Alias</span> /favicon.ico <span class="string">"E:/Tools/reviews/htdocs/static/rb/images/favicon.png"</span></div><div class="line"><span class="section">&lt;/VirtualHost&gt;</span></div></pre></td></tr></table></figure></li><li><p>修改E:\Tools\reviews\conf\settings_local.py</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DEBUG模式改为False</span></div><div class="line"><span class="attr">DEBUG</span> = <span class="literal">False</span>      # 由<span class="literal">True</span>到<span class="literal">False</span>，这个我也做对了</div><div class="line"> </div><div class="line"><span class="comment"># 添加可访问主机</span></div><div class="line"><span class="attr">ALLOWED_HOSTS</span> = [<span class="string">'reviews.com'</span>,<span class="string">'localhost'</span>,<span class="string">'192.168.0.112'</span>]</div></pre></td></tr></table></figure></li><li><p>重启Apache服务器</p></li><li><p>访问ReviewBoard站点</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">客户端：<span class="link">http://</span>[<span class="string">ip</span>]:[port]</div><div class="line">管理端：<span class="link">http://</span>[<span class="string">ip</span>]:[port]/admin</div></pre></td></tr></table></figure></li></ul></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"><p>微信打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"><p>支付宝打赏</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> Jason</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://www.itechq.com/blog/ec94ab3a.html" title="Windows下ReviewBoard安装与配置">http://www.itechq.com/blog/ec94ab3a.html</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Windows/" rel="tag"># Windows</a> <a href="/tags/Reviewboard/" rel="tag"># Reviewboard</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/blog/eae29bee.html" rel="prev" title="小米2S刷安卓原生系统">小米2S刷安卓原生系统 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div class="ds-thread" data-thread-key="blog/ec94ab3a.html" data-title="Windows下ReviewBoard安装与配置" data-url="http://www.itechq.com/blog/ec94ab3a.html"></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="Jason"><p class="site-author-name" itemprop="name">Jason</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">15</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/itechq" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://coding.net/u/itechq" target="_blank" title="Coding"><i class="fa fa-fw fa-github-alt"></i> Coding </a></span><span class="links-of-author-item"><a href="https://git.oschina.net/itechq" target="_blank" title="OSChina"><i class="fa fa-fw fa-qrcode"></i> OSChina</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装准备"><span class="nav-number">1.</span> <span class="nav-text">安装准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装步骤"><span class="nav-number">2.</span> <span class="nav-text">安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Mysql"><span class="nav-number">2.1.</span> <span class="nav-text">1. 安装Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装Apache"><span class="nav-number">2.2.</span> <span class="nav-text">2. 安装Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装Python"><span class="nav-number">2.3.</span> <span class="nav-text">3. 安装Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装mod-python-3-3-1-win32-py2-7-exe"><span class="nav-number">2.4.</span> <span class="nav-text">4. 安装mod_python-3.3.1.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-安装py27-pysvn-svn1811-1-7-10-1584-exe"><span class="nav-number">2.5.</span> <span class="nav-text">5. 安装py27-pysvn-svn1811-1.7.10-1584.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-安装setuptools-0-6c11-win32-py2-7-exe"><span class="nav-number">2.6.</span> <span class="nav-text">6. 安装setuptools-0.6c11.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安装patch-2-5-9-7-setup-exe"><span class="nav-number">2.7.</span> <span class="nav-text">7. 安装patch-2.5.9-7-setup.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-安装memcached"><span class="nav-number">2.8.</span> <span class="nav-text">8. 安装memcached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-安装python-memcached"><span class="nav-number">2.9.</span> <span class="nav-text">9. 安装python-memcached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-安装MySQL-python-1-2-5-win32-py2-7-exe"><span class="nav-number">2.10.</span> <span class="nav-text">10. 安装MySQL-python-1.2.5.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-安装pycrypto-2-6-1-win32-py2-7-exe"><span class="nav-number">2.11.</span> <span class="nav-text">11. 安装pycrypto-2.6.1.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-安装ReviewBoard"><span class="nav-number">2.12.</span> <span class="nav-text">12. 安装ReviewBoard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReviewBoard配置"><span class="nav-number">3.</span> <span class="nav-text">ReviewBoard配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建数据库及用户名"><span class="nav-number">3.1.</span> <span class="nav-text">1. 创建数据库及用户名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建站点"><span class="nav-number">3.2.</span> <span class="nav-text">2. 创建站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Apache配置"><span class="nav-number">3.3.</span> <span class="nav-text">3. Apache配置</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Jason</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">var duoshuoQuery={short_name:"itechq"};!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.id="duoshuo-script",t.src=("https:"==document.location.protocol?"https:":"http:")+"//static.duoshuo.com/embed.js",t.charset="UTF-8",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(t)}()</script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js?v=5.1.0"></script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".popup").toggle()}var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path,searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),s=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,s=r.title.trim().toLowerCase(),o=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),n=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=s&&a.forEach(function(e,t){i=s.indexOf(e),l=o.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+n+"' class='search-result-title'>"+s+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),s.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz","HWjJoBgvJgNla76GbuDS4aU5")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0===e.length)return void o.find(t).text(0);for(var i=0;i<e.length;i++){var r=e[i],s=r.get("url"),l=r.get("time"),c=document.getElementById(s);$(c).find(t).text(l)}for(var i=0;i<n.length;i++){var s=n[i],c=document.getElementById(s),u=$(c).find(t);""==u.text()&&u.text(0)}}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var r=new e,s=new AV.ACL;s.setPublicReadAccess(!0),s.setPublicWriteAccess(!0),r.setACL(s),r.set("title",o),r.set("url",n),r.set("time",1),r.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><script>!function(){var t=document.createElement("script"),s=window.location.protocol.split(":")[0];"https"===s?t.src="https://zz.bdstatic.com/linksubmit/push.js":t.src="http://push.zhanzhang.baidu.com/push.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Windows,Reviewboard," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="安装准备安装文件清单
+
+Mysql 5.6 下载链接
+Apache 2.2 下载链接
+Python 2.7 下载链接
+mod_python 3.3 下载地址
+py27-pysvn-svn 下载地址 参考链接
+setuptools 下载地址 参考链接
+patch-2.5.9.7-setup 下载地址 参考链接
+memcached 下载地址
+python-memcached 下载地址 参考地址
+mys">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下ReviewBoard安装与配置">
+<meta property="og:url" content="http://www.itechq.com/blog/ec94ab3a.html">
+<meta property="og:site_name" content="小牧家园">
+<meta property="og:description" content="安装准备安装文件清单
+
+Mysql 5.6 下载链接
+Apache 2.2 下载链接
+Python 2.7 下载链接
+mod_python 3.3 下载地址
+py27-pysvn-svn 下载地址 参考链接
+setuptools 下载地址 参考链接
+patch-2.5.9.7-setup 下载地址 参考链接
+memcached 下载地址
+python-memcached 下载地址 参考地址
+mys">
+<meta property="og:updated_time" content="2017-03-23T13:18:59.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows下ReviewBoard安装与配置">
+<meta name="twitter:description" content="安装准备安装文件清单
+
+Mysql 5.6 下载链接
+Apache 2.2 下载链接
+Python 2.7 下载链接
+mod_python 3.3 下载地址
+py27-pysvn-svn 下载地址 参考链接
+setuptools 下载地址 参考链接
+patch-2.5.9.7-setup 下载地址 参考链接
+memcached 下载地址
+python-memcached 下载地址 参考地址
+mys">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.itechq.com/blog/ec94ab3a.html"/>
+
+
+
+
+
+  <title> Windows下ReviewBoard安装与配置 | 小牧家园 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小牧家园</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">墙外的世界</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/ec94ab3a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小牧家园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Windows下ReviewBoard安装与配置
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-28T14:46:58+08:00">
+                2016-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/blog/ec94ab3a.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/ec94ab3a.html" class="leancloud_visitors" data-flag-title="Windows下ReviewBoard安装与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><p>安装文件清单</p>
+<ul>
+<li>Mysql 5.6 <a href="http://cdn.mysql.com/Downloads/MySQLInstaller/mysql-installer-community-5.6.26.0.msi" target="_blank" rel="external">下载链接</a></li>
+<li>Apache 2.2 <a href="http://archive.apache.org/dist/httpd/" target="_blank" rel="external">下载链接</a></li>
+<li>Python 2.7 <a href="https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi" target="_blank" rel="external">下载链接</a></li>
+<li>mod_python 3.3 <a href="http://archive.apache.org/dist/httpd/modpython/win/3.3.1/mod_python-3.3.1.win32-py2.5-Apache2.2.exe" target="_blank" rel="external">下载地址</a></li>
+<li>py27-pysvn-svn <a href="http://pysvn.tigris.org/files/documents/1233/49404/py27-pysvn-svn1811-1.7.10-1584.exe" target="_blank" rel="external">下载地址</a> <a href="http://pysvn.tigris.org/servlets/ProjectDocumentList?folderID=1768" target="_blank" rel="external">参考链接</a></li>
+<li>setuptools <a href="https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20" target="_blank" rel="external">下载地址</a> <a href="https://pypi.python.org/pypi/setuptools/0.6c11" target="_blank" rel="external">参考链接</a></li>
+<li>patch-2.5.9.7-setup <a href="http://ncu.dl.sourceforge.net/project/gnuwin32/patch/2.5.9-7/patch-2.5.9-7-setup.exe" target="_blank" rel="external">下载地址</a> <a href="http://sourceforge.net/projects/gnuwin32/files/patch/2.5.9-7/" target="_blank" rel="external">参考链接</a></li>
+<li>memcached <a href="http://s3.amazonaws.com/downloads.northscale.com/memcached-win64-1.4.4-14.zip" target="_blank" rel="external">下载地址</a></li>
+<li>python-memcached <a href="ftp://ftp.tummy.com/pub/python-memcached/python-memcached-latest.tar.gz" target="_blank" rel="external">下载地址</a> <a href="http://www.tummy.com/software/python-memcached/" target="_blank" rel="external">参考地址</a></li>
+<li>mysql-python <a href="https://pypi.python.org/packages/2.7/M/MySQL-python/MySQL-python-1.2.5.win32-py2.7.exe#md5=6f43f42516ea26e79cfb100af69a925e" target="_blank" rel="external">下载地址</a> <a href="https://pypi.python.org/pypi/MySQL-python/1.2.5" target="_blank" rel="external">参考链接</a></li>
+<li>pycrypto-2.6.1 <a href="http://www.voidspace.org.uk/python/pycrypto-2.6.1/" target="_blank" rel="external">下载地址</a></li>
+<li>mod_wsgi-win32-ap22py27-3.3.so <a href="https://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-win32-ap22py27-3.3.so" target="_blank" rel="external">下载地址</a></li>
+<li>RBTools <a href="https://downloads.reviewboard.org/releases/RBTools/0.7/RBTools-0.7.4.exe" target="_blank" rel="external">下载地址</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-安装Mysql"><a href="#1-安装Mysql" class="headerlink" title="1. 安装Mysql"></a>1. 安装Mysql</h3><p>安装完成后，注意修改默认编码格式为UTF-8<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">show variables like <span class="emphasis">'character%'</span>;</div><div class="line"></div><div class="line"><span class="section">#显示如下信息</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div><div class="line"><span class="section">| Variable_name            | Value                                                   |</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div><div class="line">| character<span class="emphasis">_set_</span>client     | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>connection | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>database   | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>filesystem | binary                                                  |</div><div class="line">| character<span class="emphasis">_set_</span>results    | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>server     | utf8                                                    |</div><div class="line">| character<span class="emphasis">_set_</span>system     | utf8                                                    |</div><div class="line"><span class="section">| character_sets_dir       | C:\Program Files\MySQL\MySQL Server 5.6\share\charsets\ |</span></div><div class="line">+--------------------------+---------------------------------------------------------+</div></pre></td></tr></table></figure></p>
+<h3 id="2-安装Apache"><a href="#2-安装Apache" class="headerlink" title="2. 安装Apache"></a>2. 安装Apache</h3><p>完成后确认在Windows服务中启动并且在浏览器中输入localhost检查是否启动正常。</p>
+<h3 id="3-安装Python"><a href="#3-安装Python" class="headerlink" title="3. 安装Python"></a>3. 安装Python</h3><p>注意要把python27和python27/scripts目录放到环境变量中</p>
+<h3 id="4-安装mod-python-3-3-1-win32-py2-7-exe"><a href="#4-安装mod-python-3-3-1-win32-py2-7-exe" class="headerlink" title="4. 安装mod_python-3.3.1.win32-py2.7.exe"></a>4. 安装mod_python-3.3.1.win32-py2.7.exe</h3><p>注意：安装mod_python的时候，需要停掉apache，安装后请检查apache的modules目录下是否有mod_python.so，如果没有请检查安装是否过程是否有问题</p>
+<h3 id="5-安装py27-pysvn-svn1811-1-7-10-1584-exe"><a href="#5-安装py27-pysvn-svn1811-1-7-10-1584-exe" class="headerlink" title="5. 安装py27-pysvn-svn1811-1.7.10-1584.exe"></a>5. 安装py27-pysvn-svn1811-1.7.10-1584.exe</h3><h3 id="6-安装setuptools-0-6c11-win32-py2-7-exe"><a href="#6-安装setuptools-0-6c11-win32-py2-7-exe" class="headerlink" title="6. 安装setuptools-0.6c11.win32-py2.7.exe"></a>6. 安装setuptools-0.6c11.win32-py2.7.exe</h3><h3 id="7-安装patch-2-5-9-7-setup-exe"><a href="#7-安装patch-2-5-9-7-setup-exe" class="headerlink" title="7. 安装patch-2.5.9-7-setup.exe"></a>7. 安装patch-2.5.9-7-setup.exe</h3><h3 id="8-安装memcached"><a href="#8-安装memcached" class="headerlink" title="8. 安装memcached"></a>8. 安装memcached</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#1</span>.解压<span class="selector-tag">memcached-win64-1</span><span class="selector-class">.4</span><span class="selector-class">.4-14</span><span class="selector-class">.zip</span>到<span class="selector-tag">E</span>:\<span class="selector-tag">Tools</span>\<span class="selector-tag">memcached</span></div><div class="line"></div><div class="line"><span class="selector-id">#2</span>.进入<span class="selector-tag">E</span>:\<span class="selector-tag">Tools</span>\<span class="selector-tag">memcached</span></div><div class="line"></div><div class="line"><span class="selector-id">#3</span>.执行命令，安装<span class="selector-tag">memcached</span>为系统服务</div><div class="line"><span class="selector-tag">memcached</span><span class="selector-class">.exe</span> <span class="selector-tag">-d</span> <span class="selector-tag">install</span></div></pre></td></tr></table></figure>
+<h3 id="9-安装python-memcached"><a href="#9-安装python-memcached" class="headerlink" title="9. 安装python-memcached"></a>9. 安装python-memcached</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#1</span>. 解压<span class="selector-tag">python-memcached-latest</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></div><div class="line"></div><div class="line"><span class="selector-id">#2</span>. 执行安装命令</div><div class="line"><span class="selector-tag">python</span> <span class="selector-tag">setup</span><span class="selector-class">.py</span> <span class="selector-tag">install</span></div></pre></td></tr></table></figure>
+<h3 id="10-安装MySQL-python-1-2-5-win32-py2-7-exe"><a href="#10-安装MySQL-python-1-2-5-win32-py2-7-exe" class="headerlink" title="10. 安装MySQL-python-1.2.5.win32-py2.7.exe"></a>10. 安装MySQL-python-1.2.5.win32-py2.7.exe</h3><h3 id="11-安装pycrypto-2-6-1-win32-py2-7-exe"><a href="#11-安装pycrypto-2-6-1-win32-py2-7-exe" class="headerlink" title="11. 安装pycrypto-2.6.1.win32-py2.7.exe"></a>11. 安装pycrypto-2.6.1.win32-py2.7.exe</h3><p>解决编译安装时出现以下错误:<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Downloading https://pypi.python.org/packages/source/p/pycrypto/pycrypto<span class="string">-2</span>.6.1.ta</div><div class="line">r.gz#md5=55a61a054aa66812daf5161a0d5d7eda</div><div class="line">Processing pycrypto<span class="string">-2</span>.6.1.tar.gz</div><div class="line">Running pycrypto<span class="string">-2</span>.6.1\setup.py -q bdist_egg --dist-dir c:\users\ch\appdata\loca</div><div class="line">l\temp\easy_install-sby0sc\pycrypto<span class="string">-2</span>.6.1\egg-dist-tmp-wvzthp</div><div class="line">warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.</div><div class="line"></div><div class="line">gcc: error: unrecognized command line option '-mno-cygwin'</div><div class="line"><span class="keyword">error: </span>Setup script exited with error: command 'C:\\cygwin64\\bin\\gcc.exe' fail</div><div class="line">ed with exit status 1</div></pre></td></tr></table></figure></p>
+<h3 id="12-安装ReviewBoard"><a href="#12-安装ReviewBoard" class="headerlink" title="12. 安装ReviewBoard"></a>12. 安装ReviewBoard</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#执行命令</span></div><div class="line">easy_install ReviewBoard</div><div class="line"></div><div class="line"><span class="meta">#安装指定版本ReviewBoard</span></div><div class="line">easy_install <span class="string">"ReviewBoard&lt;2.0"</span></div></pre></td></tr></table></figure>
+<h2 id="ReviewBoard配置"><a href="#ReviewBoard配置" class="headerlink" title="ReviewBoard配置"></a>ReviewBoard配置</h2><h3 id="1-创建数据库及用户名"><a href="#1-创建数据库及用户名" class="headerlink" title="1. 创建数据库及用户名"></a>1. 创建数据库及用户名</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#创建数据库</span></div><div class="line"><span class="attribute">create</span> database reviewboard character set utf8;</div><div class="line"></div><div class="line"><span class="comment">#创建用户（下面会用到）</span></div><div class="line"><span class="attribute">create</span> user <span class="string">'reviewboard'</span>@<span class="string">'localhost'</span> identified by <span class="string">'reviewboard'</span>;</div><div class="line"></div><div class="line"><span class="comment">#给用户授权</span></div><div class="line"><span class="attribute">grant</span> all privileges <span class="literal">on</span> <span class="regexp">reviewboard.*</span> to <span class="string">'reviewboard'</span>@<span class="string">'localhost'</span>;</div></pre></td></tr></table></figure>
+<h3 id="2-创建站点"><a href="#2-创建站点" class="headerlink" title="2. 创建站点"></a>2. 创建站点</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 执行命令</span></div><div class="line">rb-site install e:\tools\reviews</div><div class="line"></div><div class="line"><span class="meta">#按要求填写相关要素即可</span></div></pre></td></tr></table></figure>
+<h3 id="3-Apache配置"><a href="#3-Apache配置" class="headerlink" title="3. Apache配置"></a>3. Apache配置</h3><ul>
+<li><p>add mod_python.so 到httpd.conf中<br><code>LoadModule python_module modules/mod_python.so</code></p>
+</li>
+<li><p>add mod_wsgi-win32-ap22py27-3.3.so 到httpd.conf中<br><code>LoadModule wsgi_module modules/mod_wsgi-win32-ap22py27-3.3.so</code></p>
+</li>
+<li><p>将e:\tools\reviews\conf\apache-wsgi.conf内容添加到 vhosts到httpd-vhosts.conf中</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="section">&lt;VirtualHost *:84&gt;</span></div><div class="line">	<span class="attribute"><span class="nomarkup">ServerName</span></span> reviews.com</div><div class="line">	<span class="attribute"><span class="nomarkup">DocumentRoot</span></span> <span class="string">"E:/Tools/reviews/htdocs"</span></div><div class="line"></div><div class="line">	<span class="comment"># Error handlers</span></div><div class="line">	<span class="attribute"><span class="nomarkup">ErrorDocument</span></span> 500 /errordocs/500.html</div><div class="line"></div><div class="line">	<span class="attribute">WSGIPassAuthorization</span> <span class="literal">On</span></div><div class="line">	<span class="attribute">WSGIScriptAlias</span> <span class="string">"/"</span> <span class="string">"E:/Tools/reviews/htdocs/reviewboard.wsgi/"</span></div><div class="line"></div><div class="line">	<span class="section">&lt;Directory "E:/Tools/reviews/htdocs"&gt;</span></div><div class="line">		<span class="attribute">AllowOverride</span> <span class="literal">All</span></div><div class="line">		<span class="attribute"><span class="nomarkup">Options</span></span> -Indexes +FollowSymLinks</div><div class="line">		<span class="attribute"><span class="nomarkup">Allow</span></span> from <span class="literal">all</span></div><div class="line">	<span class="section">&lt;/Directory&gt;</span></div><div class="line"></div><div class="line">	<span class="comment"># Prevent the server from processing or allowing the rendering of</span></div><div class="line">	<span class="comment"># certain file types.</span></div><div class="line">	<span class="section">&lt;Location "/media/uploaded"&gt;</span></div><div class="line">		<span class="attribute"><span class="nomarkup">SetHandler</span></span> None</div><div class="line">		<span class="attribute"><span class="nomarkup">Options</span></span> None</div><div class="line"></div><div class="line">		<span class="attribute">AddType</span> text/plain .html .htm .shtml .php .php3 .php4 .php5 .phps .asp</div><div class="line">		<span class="attribute">AddType</span> text/plain .pl .py .fcgi .cgi .phtml .phtm .pht .jsp .sh .rb</div><div class="line"></div><div class="line">		<span class="section">&lt;IfModule mod_php5.c&gt;</span></div><div class="line">			<span class="attribute">php_flag</span> engine <span class="literal">off</span></div><div class="line">		<span class="section">&lt;/IfModule&gt;</span></div><div class="line">	<span class="section">&lt;/Location&gt;</span></div><div class="line"></div><div class="line">	<span class="comment"># Alias static media requests to filesystem</span></div><div class="line">	<span class="attribute">Alias</span> /media <span class="string">"E:/Tools/reviews/htdocs/media"</span></div><div class="line">	<span class="attribute">Alias</span> /static <span class="string">"E:/Tools/reviews/htdocs/static"</span></div><div class="line">	<span class="attribute">Alias</span> /errordocs <span class="string">"E:/Tools/reviews/htdocs/errordocs"</span></div><div class="line">	<span class="attribute">Alias</span> /favicon.ico <span class="string">"E:/Tools/reviews/htdocs/static/rb/images/favicon.png"</span></div><div class="line"><span class="section">&lt;/VirtualHost&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>修改E:\Tools\reviews\conf\settings_local.py</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DEBUG模式改为False</span></div><div class="line"><span class="attr">DEBUG</span> = <span class="literal">False</span>      # 由<span class="literal">True</span>到<span class="literal">False</span>，这个我也做对了</div><div class="line"> </div><div class="line"><span class="comment"># 添加可访问主机</span></div><div class="line"><span class="attr">ALLOWED_HOSTS</span> = [<span class="string">'reviews.com'</span>,<span class="string">'localhost'</span>,<span class="string">'192.168.0.112'</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启Apache服务器</p>
+</li>
+<li><p>访问ReviewBoard站点</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">客户端：<span class="link">http://</span>[<span class="string">ip</span>]:[port]</div><div class="line">管理端：<span class="link">http://</span>[<span class="string">ip</span>]:[port]/admin</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Jason
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.itechq.com/blog/ec94ab3a.html" title="Windows下ReviewBoard安装与配置">http://www.itechq.com/blog/ec94ab3a.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+            <a href="/tags/Reviewboard/" rel="tag"># Reviewboard</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/eae29bee.html" rel="prev" title="小米2S刷安卓原生系统">
+                小米2S刷安卓原生系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.gif"
+               alt="Jason" />
+          <p class="site-author-name" itemprop="name">Jason</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/itechq" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/itechq" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://git.oschina.net/itechq" target="_blank" title="OSChina">
+                  
+                    <i class="fa fa-fw fa-qrcode"></i>
+                  
+                  OSChina
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装准备"><span class="nav-number">1.</span> <span class="nav-text">安装准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装步骤"><span class="nav-number">2.</span> <span class="nav-text">安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Mysql"><span class="nav-number">2.1.</span> <span class="nav-text">1. 安装Mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装Apache"><span class="nav-number">2.2.</span> <span class="nav-text">2. 安装Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装Python"><span class="nav-number">2.3.</span> <span class="nav-text">3. 安装Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装mod-python-3-3-1-win32-py2-7-exe"><span class="nav-number">2.4.</span> <span class="nav-text">4. 安装mod_python-3.3.1.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-安装py27-pysvn-svn1811-1-7-10-1584-exe"><span class="nav-number">2.5.</span> <span class="nav-text">5. 安装py27-pysvn-svn1811-1.7.10-1584.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-安装setuptools-0-6c11-win32-py2-7-exe"><span class="nav-number">2.6.</span> <span class="nav-text">6. 安装setuptools-0.6c11.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安装patch-2-5-9-7-setup-exe"><span class="nav-number">2.7.</span> <span class="nav-text">7. 安装patch-2.5.9-7-setup.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-安装memcached"><span class="nav-number">2.8.</span> <span class="nav-text">8. 安装memcached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-安装python-memcached"><span class="nav-number">2.9.</span> <span class="nav-text">9. 安装python-memcached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-安装MySQL-python-1-2-5-win32-py2-7-exe"><span class="nav-number">2.10.</span> <span class="nav-text">10. 安装MySQL-python-1.2.5.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-安装pycrypto-2-6-1-win32-py2-7-exe"><span class="nav-number">2.11.</span> <span class="nav-text">11. 安装pycrypto-2.6.1.win32-py2.7.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-安装ReviewBoard"><span class="nav-number">2.12.</span> <span class="nav-text">12. 安装ReviewBoard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReviewBoard配置"><span class="nav-number">3.</span> <span class="nav-text">ReviewBoard配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建数据库及用户名"><span class="nav-number">3.1.</span> <span class="nav-text">1. 创建数据库及用户名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建站点"><span class="nav-number">3.2.</span> <span class="nav-text">2. 创建站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Apache配置"><span class="nav-number">3.3.</span> <span class="nav-text">3. Apache配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "0e65259ad6af43599cfc58151b82010d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz", "HWjJoBgvJgNla76GbuDS4aU5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

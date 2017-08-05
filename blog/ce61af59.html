@@ -1,1 +1,1183 @@
-<!doctype html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="七牛云存储,Markdown,"><link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，"><meta property="og:type" content="article"><meta property="og:title" content="七牛云存储同步工具——为Markdown写作诞生"><meta property="og:url" content="http://www.itechq.com/blog/ce61af59.html"><meta property="og:site_name" content="小牧家园"><meta property="og:description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png"><meta property="og:updated_time" content="2017-03-23T13:18:59.446Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="七牛云存储同步工具——为Markdown写作诞生"><meta name="twitter:description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，"><meta name="twitter:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"6288157089562887000",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://www.itechq.com/blog/ce61af59.html"><title>七牛云存储同步工具——为Markdown写作诞生 | 小牧家园</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div style="display:none"><script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script></div><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">小牧家园</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">墙外的世界</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/ce61af59.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jason"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="小牧家园"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">七牛云存储同步工具——为Markdown写作诞生</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-09T12:34:11+08:00">2016-06-09 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/blog/ce61af59.html#comments" itemprop="discussionUrl"><span class="post-comments-count ds-thread-count" data-thread-key="blog/ce61af59.html" itemprop="commentCount"></span> </a></span><span id="/blog/ce61af59.html" class="leancloud_visitors" data-flag-title="七牛云存储同步工具——为Markdown写作诞生"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数 </span><span class="leancloud-visitors-count"></span></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>三年前买下<a href="http://www.itechq.com/"><code>www.itechq.com</code></a>这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个<code>Shadowsocks Server</code>，每月1000G流量，手机、笔记本都通过它翻墙，目前还比较稳定（不要问我为啥不直接买个收费VPN，因为程序猿爱折腾）。VPN搞定后，发现VPS系统资源利用率很少，此时，又激发了自己的博客梦，从而走上了Wordpress、Hexo的折腾之路……</p><h1 id="为何开发"><a href="#为何开发" class="headerlink" title="为何开发"></a>为何开发</h1><p>刚开始博客空间是用WP搭建，花了差不多两周时间配置、修改主题代码，后来因为WP对Markdown支持太弱了，而且相对来说比较重，选择放弃，最后选择Hexo纯静态博客空间，托管到Github、Coding。之所以选择七牛作为存储，是因为在配置WP插件时用到<code>wpjam-qiniu</code>插件，可以将网站上的js、css、image等资源自动同步到七牛云，而Hexo没有此类插件。</p><p>后来在七牛官网看到官方同步工具<a href="http://developer.qiniu.com/code/v6/tool/qrsbox.html" target="_blank" rel="external">qrsbox</a>，虽然该工具能够同步image到七牛云，但是和自己想想的还是有一定差距，如：图片命名、存储目录、外链地址拷贝都比较麻烦。此时在简书上看到一篇文章<strong><a href="http://www.jianshu.com/p/6dce6094bf61" target="_blank" rel="external">如何使用七牛云做为图床？</a></strong>，看完后还是觉得步骤较为复杂，没有达到自己想要的效果，但它却触发了自己写个小工具的想法，于是开始构思工具包括哪些功能，最后确定如下功能：</p><ul><li>支持从剪切板获取图像上传；<strong>灵感来自 <a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">作业部落 CMD Markdown</a>图片上传效果（一款很棒的Markdown编辑工具）</strong></li><li>支持本地图像上传；</li><li>支持从网络下载图像并上传；</li><li>图像上传后自动生成Markdown格式的图片引用标签；</li><li>支持删除已上传的图像；</li><li>支持系统托盘，类似QQ之类软件一样，双击打开。</li></ul><a id="more"></a><h1 id="开始编码"><a href="#开始编码" class="headerlink" title="开始编码"></a>开始编码</h1><p>由于博主目前对Java语言最熟，所以技术上只能选择Java，后续准备学习Python，开发一个Python版本的。</p><h2 id="七牛Java-SDK参考"><a href="#七牛Java-SDK参考" class="headerlink" title="七牛Java SDK参考"></a>七牛Java SDK参考</h2><p>参考官方文档，<a href="http://developer.qiniu.com/code/v7/sdk/java.html" target="_blank" rel="external">链接地址</a></p><h2 id="七牛同步代码"><a href="#七牛同步代码" class="headerlink" title="七牛同步代码"></a>七牛同步代码</h2><blockquote><p>主要实现七牛云图片上传、删除功能！</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QiNiuSync</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</div><div class="line"></div><div class="line">    <span class="comment">// 外链地址</span></div><div class="line">    <span class="keyword">private</span> String outerLinkAddr = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// 授权信息</span></div><div class="line">    <span class="keyword">private</span> String ACCESS_KEY = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> String SECRET_KEY = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">//要上传的空间</span></div><div class="line">    <span class="keyword">private</span> String bucketName = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">//密钥配置</span></div><div class="line">    <span class="keyword">private</span> Auth auth = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">//创建上传对象</span></div><div class="line">    <span class="keyword">private</span> UploadManager uploadManager;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QiNiuSync</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (outerLinkAddr == <span class="keyword">null</span>) &#123;</div><div class="line">            outerLinkAddr = ConfigUtil.getPropertie(<span class="string">"OuterLinkAddr"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"OuterLinkAddr = "</span> + outerLinkAddr);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ACCESS_KEY == <span class="keyword">null</span>) &#123;</div><div class="line">            ACCESS_KEY = ConfigUtil.getPropertie(<span class="string">"AccessKey"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"ACCESS_KEY = "</span> + ACCESS_KEY);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (SECRET_KEY == <span class="keyword">null</span>) &#123;</div><div class="line">            SECRET_KEY = ConfigUtil.getPropertie(<span class="string">"SecretKey"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"SECRET_KEY = "</span> + SECRET_KEY);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bucketName == <span class="keyword">null</span>) &#123;</div><div class="line">            bucketName = ConfigUtil.getPropertie(<span class="string">"BucketName"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"BucketName = "</span> + bucketName);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (auth == <span class="keyword">null</span>)&#123;</div><div class="line">            auth = Auth.create(ACCESS_KEY, SECRET_KEY);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"auth = "</span> + auth);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (uploadManager == <span class="keyword">null</span>)&#123;</div><div class="line">            uploadManager = <span class="keyword">new</span> UploadManager();</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"uploadManager = "</span> + uploadManager);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 简单上传，使用默认策略，只需要设置上传的空间名就可以了</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUpToken</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> auth.uploadToken(bucketName);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 图片上传</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> filePath 图片本地地址</div><div class="line">     * <span class="doctag">@param</span> fileName 七牛Key</div><div class="line">     * <span class="doctag">@return</span> 上传成功返回图片外链地址，上传失败返回null</div><div class="line">     * <span class="doctag">@throws</span> IOException</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(String filePath, String fileName)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//调用put方法上传</span></div><div class="line">            Response res = uploadManager.put(filePath, fileName, getUpToken());</div><div class="line">            <span class="comment">//打印返回的信息</span></div><div class="line">            logger.info(<span class="string">"upload() Response : "</span> + res.bodyString());</div><div class="line"></div><div class="line">            String outerLink = outerLinkAddr + fileName;</div><div class="line">            logger.info(<span class="string">"outerLink :"</span> + outerLink);</div><div class="line">            <span class="keyword">return</span> outerLink;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"upload() Exception : "</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 图片删除</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> qiniuKey 七牛key</div><div class="line">     * <span class="doctag">@return</span> 删除成功返回true，删除失败返回false</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">(String qiniuKey)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            BucketManager bucketManager = <span class="keyword">new</span> BucketManager(auth);</div><div class="line">            <span class="comment">//调用delete方法移动文件</span></div><div class="line">            bucketManager.delete(bucketName, qiniuKey);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"delete() Exception : "</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="剪切板代码"><a href="#剪切板代码" class="headerlink" title="剪切板代码"></a>剪切板代码</h2><blockquote><p>主要实现设置图片、文本信息到剪切板，从剪切板获取图片、文本信息！部分代码摘自网络。</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperateClipboard</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</div><div class="line"></div><div class="line">    DateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd"</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置系统剪切板，内容为图片</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> image 图片</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImageClipboard</span><span class="params">(Image image)</span> </span>&#123;</div><div class="line">        ImageSelection imgSel = <span class="keyword">new</span> ImageSelection(image);</div><div class="line">        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(imgSel, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取剪贴板图像，并返回图像绝对路径</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> rootPath 存储图像根目录</div><div class="line">     * <span class="doctag">@return</span> 获取成功返回图片路径；获取失败返回null</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getImageClipboard</span><span class="params">(String rootPath)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//create qiniu objecte</span></div><div class="line">            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</div><div class="line">            <span class="comment">//Get data from qiniu and assign it to an image.</span></div><div class="line">            <span class="comment">//qiniu.getData() returns an object, so we need to cast it to a BufferdImage.</span></div><div class="line">            BufferedImage image = (BufferedImage) clipboard.getData(DataFlavor.imageFlavor);</div><div class="line">            <span class="comment">//process file name</span></div><div class="line">            DESEncrypts desEncrypts = <span class="keyword">new</span> DESEncrypts();</div><div class="line">            String filePath = desEncrypts.encrypt(dateFormat.format(<span class="keyword">new</span> Date()));</div><div class="line">            String fileName = UUIDUtil.generateUUID() + <span class="string">".png"</span>;</div><div class="line">            String rootFilePath = rootPath + filePath;</div><div class="line">            File rootFile = <span class="keyword">new</span> File(rootFilePath);</div><div class="line">            <span class="keyword">if</span> (!rootFile.exists()) &#123;</div><div class="line">                rootFile.mkdirs();</div><div class="line">            &#125;</div><div class="line">            String imageFileName = rootFilePath + File.separator + fileName;</div><div class="line">            <span class="comment">//file that we'll save to disk.</span></div><div class="line">            File file = <span class="keyword">new</span> File(imageFileName);</div><div class="line"></div><div class="line">            <span class="comment">//class to write image to disk.  You specify the image to be saved, its type,</span></div><div class="line">            <span class="comment">// and then the file in which to write the image data.</span></div><div class="line">            ImageIO.write(image, <span class="string">"png"</span>, file);</div><div class="line">            logger.info(<span class="string">"image capture success:"</span> + imageFileName);</div><div class="line">            <span class="keyword">return</span> imageFileName;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//getData throws this.</span></div><div class="line">        <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"Exception:"</span>, e);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置系统剪贴板，内容为文本</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> refContent 文本内容</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSystemClipboard</span><span class="params">(String refContent)</span> </span>&#123;</div><div class="line">        String vc = refContent.trim();</div><div class="line">        StringSelection ss = <span class="keyword">new</span> StringSelection(vc);</div><div class="line">        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取系统剪切板的文本内容[如果系统剪切板复制的内容是文本]</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> 获取成功返回剪切板内容，获取失败返回null</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSystemClipboard</span><span class="params">()</span> </span>&#123;</div><div class="line">        Clipboard sysClb = <span class="keyword">null</span>;</div><div class="line">        sysClb = Toolkit.getDefaultToolkit().getSystemClipboard();</div><div class="line">        Transferable t = sysClb.getContents(<span class="keyword">null</span>);</div><div class="line">        <span class="comment">//Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);  //跟上面三行代码一样</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != t &amp;&amp; t.isDataFlavorSupported(DataFlavor.stringFlavor)) &#123;</div><div class="line">                String text = (String) t.getTransferData(DataFlavor.stringFlavor);</div><div class="line">                <span class="keyword">return</span> text;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"Exception:"</span>, e);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h1 id="成品"><a href="#成品" class="headerlink" title="成品"></a>成品</h1><h2 id="工具操作面板"><a href="#工具操作面板" class="headerlink" title="工具操作面板"></a>工具操作面板</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png" alt="62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png"></p><h2 id="快捷上传"><a href="#快捷上传" class="headerlink" title="快捷上传"></a>快捷上传</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png" alt="62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png"></p><h2 id="七牛云存储截图"><a href="#七牛云存储截图" class="headerlink" title="七牛云存储截图"></a>七牛云存储截图</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png" alt="62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png"></p><p><strong>搞定，主要功能操作面板上都有，基本上满足博主需求~~</strong></p></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"><p>微信打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"><p>支付宝打赏</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> Jason</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://www.itechq.com/blog/ce61af59.html" title="七牛云存储同步工具——为Markdown写作诞生">http://www.itechq.com/blog/ce61af59.html</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/七牛云存储/" rel="tag"># 七牛云存储</a> <a href="/tags/Markdown/" rel="tag"># Markdown</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/blog/eae29bee.html" rel="next" title="小米2S刷安卓原生系统"><i class="fa fa-chevron-left"></i> 小米2S刷安卓原生系统</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/blog/1d17cbb4.html" rel="prev" title="IntelliJ IDEA 快捷键收录">IntelliJ IDEA 快捷键收录 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div class="ds-thread" data-thread-key="blog/ce61af59.html" data-title="七牛云存储同步工具——为Markdown写作诞生" data-url="http://www.itechq.com/blog/ce61af59.html"></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="Jason"><p class="site-author-name" itemprop="name">Jason</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">15</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/itechq" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://coding.net/u/itechq" target="_blank" title="Coding"><i class="fa fa-fw fa-github-alt"></i> Coding </a></span><span class="links-of-author-item"><a href="https://git.oschina.net/itechq" target="_blank" title="OSChina"><i class="fa fa-fw fa-qrcode"></i> OSChina</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为何开发"><span class="nav-number">2.</span> <span class="nav-text">为何开发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始编码"><span class="nav-number">3.</span> <span class="nav-text">开始编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛Java-SDK参考"><span class="nav-number">3.1.</span> <span class="nav-text">七牛Java SDK参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛同步代码"><span class="nav-number">3.2.</span> <span class="nav-text">七牛同步代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#剪切板代码"><span class="nav-number">3.3.</span> <span class="nav-text">剪切板代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成品"><span class="nav-number">4.</span> <span class="nav-text">成品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具操作面板"><span class="nav-number">4.1.</span> <span class="nav-text">工具操作面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷上传"><span class="nav-number">4.2.</span> <span class="nav-text">快捷上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛云存储截图"><span class="nav-number">4.3.</span> <span class="nav-text">七牛云存储截图</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Jason</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">var duoshuoQuery={short_name:"itechq"};!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.id="duoshuo-script",t.src=("https:"==document.location.protocol?"https:":"http:")+"//static.duoshuo.com/embed.js",t.charset="UTF-8",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(t)}()</script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js?v=5.1.0"></script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".popup").toggle()}var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path,searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),s=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,s=r.title.trim().toLowerCase(),o=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),n=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=s&&a.forEach(function(e,t){i=s.indexOf(e),l=o.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+n+"' class='search-result-title'>"+s+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),s.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz","HWjJoBgvJgNla76GbuDS4aU5")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0===e.length)return void o.find(t).text(0);for(var i=0;i<e.length;i++){var r=e[i],s=r.get("url"),l=r.get("time"),c=document.getElementById(s);$(c).find(t).text(l)}for(var i=0;i<n.length;i++){var s=n[i],c=document.getElementById(s),u=$(c).find(t);""==u.text()&&u.text(0)}}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var r=new e,s=new AV.ACL;s.setPublicReadAccess(!0),s.setPublicWriteAccess(!0),r.setACL(s),r.set("title",o),r.set("url",n),r.set("time",1),r.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><script>!function(){var t=document.createElement("script"),s=window.location.protocol.split(":")[0];"https"===s?t.src="https://zz.bdstatic.com/linksubmit/push.js":t.src="http://push.zhanzhang.baidu.com/push.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="七牛云存储,Markdown," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="七牛云存储同步工具——为Markdown写作诞生">
+<meta property="og:url" content="http://www.itechq.com/blog/ce61af59.html">
+<meta property="og:site_name" content="小牧家园">
+<meta property="og:description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png">
+<meta property="og:updated_time" content="2017-03-23T13:18:59.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="七牛云存储同步工具——为Markdown写作诞生">
+<meta name="twitter:description" content="缘起三年前买下www.itechq.com这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个Shadowsocks Server，每月1000G流量，手机、笔记本都通过它翻墙，">
+<meta name="twitter:image" content="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.itechq.com/blog/ce61af59.html"/>
+
+
+
+
+
+  <title> 七牛云存储同步工具——为Markdown写作诞生 | 小牧家园 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小牧家园</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">墙外的世界</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/ce61af59.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小牧家园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                七牛云存储同步工具——为Markdown写作诞生
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-09T12:34:11+08:00">
+                2016-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index">
+                    <span itemprop="name">program</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/blog/ce61af59.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/ce61af59.html" class="leancloud_visitors" data-flag-title="七牛云存储同步工具——为Markdown写作诞生">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>三年前买下<a href="http://www.itechq.com/"><code>www.itechq.com</code></a>这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个<code>Shadowsocks Server</code>，每月1000G流量，手机、笔记本都通过它翻墙，目前还比较稳定（不要问我为啥不直接买个收费VPN，因为程序猿爱折腾）。VPN搞定后，发现VPS系统资源利用率很少，此时，又激发了自己的博客梦，从而走上了Wordpress、Hexo的折腾之路……</p>
+<h1 id="为何开发"><a href="#为何开发" class="headerlink" title="为何开发"></a>为何开发</h1><p>刚开始博客空间是用WP搭建，花了差不多两周时间配置、修改主题代码，后来因为WP对Markdown支持太弱了，而且相对来说比较重，选择放弃，最后选择Hexo纯静态博客空间，托管到Github、Coding。之所以选择七牛作为存储，是因为在配置WP插件时用到<code>wpjam-qiniu</code>插件，可以将网站上的js、css、image等资源自动同步到七牛云，而Hexo没有此类插件。</p>
+<p>后来在七牛官网看到官方同步工具<a href="http://developer.qiniu.com/code/v6/tool/qrsbox.html" target="_blank" rel="external">qrsbox</a>，虽然该工具能够同步image到七牛云，但是和自己想想的还是有一定差距，如：图片命名、存储目录、外链地址拷贝都比较麻烦。此时在简书上看到一篇文章<strong><a href="http://www.jianshu.com/p/6dce6094bf61" target="_blank" rel="external">如何使用七牛云做为图床？</a></strong>，看完后还是觉得步骤较为复杂，没有达到自己想要的效果，但它却触发了自己写个小工具的想法，于是开始构思工具包括哪些功能，最后确定如下功能：</p>
+<ul>
+<li>支持从剪切板获取图像上传；<strong>灵感来自 <a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">作业部落 CMD Markdown</a>图片上传效果（一款很棒的Markdown编辑工具）</strong></li>
+<li>支持本地图像上传；</li>
+<li>支持从网络下载图像并上传；</li>
+<li>图像上传后自动生成Markdown格式的图片引用标签；</li>
+<li>支持删除已上传的图像；</li>
+<li>支持系统托盘，类似QQ之类软件一样，双击打开。</li>
+</ul>
+<a id="more"></a>
+<h1 id="开始编码"><a href="#开始编码" class="headerlink" title="开始编码"></a>开始编码</h1><p>由于博主目前对Java语言最熟，所以技术上只能选择Java，后续准备学习Python，开发一个Python版本的。</p>
+<h2 id="七牛Java-SDK参考"><a href="#七牛Java-SDK参考" class="headerlink" title="七牛Java SDK参考"></a>七牛Java SDK参考</h2><p>参考官方文档，<a href="http://developer.qiniu.com/code/v7/sdk/java.html" target="_blank" rel="external">链接地址</a></p>
+<h2 id="七牛同步代码"><a href="#七牛同步代码" class="headerlink" title="七牛同步代码"></a>七牛同步代码</h2><blockquote>
+<p>主要实现七牛云图片上传、删除功能！</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QiNiuSync</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</div><div class="line"></div><div class="line">    <span class="comment">// 外链地址</span></div><div class="line">    <span class="keyword">private</span> String outerLinkAddr = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// 授权信息</span></div><div class="line">    <span class="keyword">private</span> String ACCESS_KEY = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> String SECRET_KEY = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">//要上传的空间</span></div><div class="line">    <span class="keyword">private</span> String bucketName = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">//密钥配置</span></div><div class="line">    <span class="keyword">private</span> Auth auth = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">//创建上传对象</span></div><div class="line">    <span class="keyword">private</span> UploadManager uploadManager;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QiNiuSync</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (outerLinkAddr == <span class="keyword">null</span>) &#123;</div><div class="line">            outerLinkAddr = ConfigUtil.getPropertie(<span class="string">"OuterLinkAddr"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"OuterLinkAddr = "</span> + outerLinkAddr);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ACCESS_KEY == <span class="keyword">null</span>) &#123;</div><div class="line">            ACCESS_KEY = ConfigUtil.getPropertie(<span class="string">"AccessKey"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"ACCESS_KEY = "</span> + ACCESS_KEY);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (SECRET_KEY == <span class="keyword">null</span>) &#123;</div><div class="line">            SECRET_KEY = ConfigUtil.getPropertie(<span class="string">"SecretKey"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"SECRET_KEY = "</span> + SECRET_KEY);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bucketName == <span class="keyword">null</span>) &#123;</div><div class="line">            bucketName = ConfigUtil.getPropertie(<span class="string">"BucketName"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"BucketName = "</span> + bucketName);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (auth == <span class="keyword">null</span>)&#123;</div><div class="line">            auth = Auth.create(ACCESS_KEY, SECRET_KEY);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"auth = "</span> + auth);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (uploadManager == <span class="keyword">null</span>)&#123;</div><div class="line">            uploadManager = <span class="keyword">new</span> UploadManager();</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"uploadManager = "</span> + uploadManager);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 简单上传，使用默认策略，只需要设置上传的空间名就可以了</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUpToken</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> auth.uploadToken(bucketName);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 图片上传</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> filePath 图片本地地址</div><div class="line">     * <span class="doctag">@param</span> fileName 七牛Key</div><div class="line">     * <span class="doctag">@return</span> 上传成功返回图片外链地址，上传失败返回null</div><div class="line">     * <span class="doctag">@throws</span> IOException</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(String filePath, String fileName)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//调用put方法上传</span></div><div class="line">            Response res = uploadManager.put(filePath, fileName, getUpToken());</div><div class="line">            <span class="comment">//打印返回的信息</span></div><div class="line">            logger.info(<span class="string">"upload() Response : "</span> + res.bodyString());</div><div class="line"></div><div class="line">            String outerLink = outerLinkAddr + fileName;</div><div class="line">            logger.info(<span class="string">"outerLink :"</span> + outerLink);</div><div class="line">            <span class="keyword">return</span> outerLink;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"upload() Exception : "</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 图片删除</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> qiniuKey 七牛key</div><div class="line">     * <span class="doctag">@return</span> 删除成功返回true，删除失败返回false</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">(String qiniuKey)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            BucketManager bucketManager = <span class="keyword">new</span> BucketManager(auth);</div><div class="line">            <span class="comment">//调用delete方法移动文件</span></div><div class="line">            bucketManager.delete(bucketName, qiniuKey);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"delete() Exception : "</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="剪切板代码"><a href="#剪切板代码" class="headerlink" title="剪切板代码"></a>剪切板代码</h2><blockquote>
+<p>主要实现设置图片、文本信息到剪切板，从剪切板获取图片、文本信息！部分代码摘自网络。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperateClipboard</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</div><div class="line"></div><div class="line">    DateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd"</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置系统剪切板，内容为图片</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> image 图片</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImageClipboard</span><span class="params">(Image image)</span> </span>&#123;</div><div class="line">        ImageSelection imgSel = <span class="keyword">new</span> ImageSelection(image);</div><div class="line">        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(imgSel, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取剪贴板图像，并返回图像绝对路径</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> rootPath 存储图像根目录</div><div class="line">     * <span class="doctag">@return</span> 获取成功返回图片路径；获取失败返回null</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getImageClipboard</span><span class="params">(String rootPath)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//create qiniu objecte</span></div><div class="line">            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</div><div class="line">            <span class="comment">//Get data from qiniu and assign it to an image.</span></div><div class="line">            <span class="comment">//qiniu.getData() returns an object, so we need to cast it to a BufferdImage.</span></div><div class="line">            BufferedImage image = (BufferedImage) clipboard.getData(DataFlavor.imageFlavor);</div><div class="line">            <span class="comment">//process file name</span></div><div class="line">            DESEncrypts desEncrypts = <span class="keyword">new</span> DESEncrypts();</div><div class="line">            String filePath = desEncrypts.encrypt(dateFormat.format(<span class="keyword">new</span> Date()));</div><div class="line">            String fileName = UUIDUtil.generateUUID() + <span class="string">".png"</span>;</div><div class="line">            String rootFilePath = rootPath + filePath;</div><div class="line">            File rootFile = <span class="keyword">new</span> File(rootFilePath);</div><div class="line">            <span class="keyword">if</span> (!rootFile.exists()) &#123;</div><div class="line">                rootFile.mkdirs();</div><div class="line">            &#125;</div><div class="line">            String imageFileName = rootFilePath + File.separator + fileName;</div><div class="line">            <span class="comment">//file that we'll save to disk.</span></div><div class="line">            File file = <span class="keyword">new</span> File(imageFileName);</div><div class="line"></div><div class="line">            <span class="comment">//class to write image to disk.  You specify the image to be saved, its type,</span></div><div class="line">            <span class="comment">// and then the file in which to write the image data.</span></div><div class="line">            ImageIO.write(image, <span class="string">"png"</span>, file);</div><div class="line">            logger.info(<span class="string">"image capture success:"</span> + imageFileName);</div><div class="line">            <span class="keyword">return</span> imageFileName;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//getData throws this.</span></div><div class="line">        <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"Exception:"</span>, e);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置系统剪贴板，内容为文本</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> refContent 文本内容</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSystemClipboard</span><span class="params">(String refContent)</span> </span>&#123;</div><div class="line">        String vc = refContent.trim();</div><div class="line">        StringSelection ss = <span class="keyword">new</span> StringSelection(vc);</div><div class="line">        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取系统剪切板的文本内容[如果系统剪切板复制的内容是文本]</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> 获取成功返回剪切板内容，获取失败返回null</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSystemClipboard</span><span class="params">()</span> </span>&#123;</div><div class="line">        Clipboard sysClb = <span class="keyword">null</span>;</div><div class="line">        sysClb = Toolkit.getDefaultToolkit().getSystemClipboard();</div><div class="line">        Transferable t = sysClb.getContents(<span class="keyword">null</span>);</div><div class="line">        <span class="comment">//Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);  //跟上面三行代码一样</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != t &amp;&amp; t.isDataFlavorSupported(DataFlavor.stringFlavor)) &#123;</div><div class="line">                String text = (String) t.getTransferData(DataFlavor.stringFlavor);</div><div class="line">                <span class="keyword">return</span> text;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            logger.error(<span class="string">"Exception:"</span>, e);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="成品"><a href="#成品" class="headerlink" title="成品"></a>成品</h1><h2 id="工具操作面板"><a href="#工具操作面板" class="headerlink" title="工具操作面板"></a>工具操作面板</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png" alt="62b0aae6828e8513/de66d8d153db474e8fcc58db99e7e192.png"></p>
+<h2 id="快捷上传"><a href="#快捷上传" class="headerlink" title="快捷上传"></a>快捷上传</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png" alt="62b0aae6828e8513/dd31939b0b2a47419e3740975eda035a.png"></p>
+<h2 id="七牛云存储截图"><a href="#七牛云存储截图" class="headerlink" title="七牛云存储截图"></a>七牛云存储截图</h2><p><img src="http://o7xt53rmp.bkt.clouddn.com/62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png" alt="62b0aae6828e8513/fd16d7880bb040d9b69f1810fbc33bbd.png"></p>
+<p><strong>搞定，主要功能操作面板上都有，基本上满足博主需求~~</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Jason
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.itechq.com/blog/ce61af59.html" title="七牛云存储同步工具——为Markdown写作诞生">http://www.itechq.com/blog/ce61af59.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/七牛云存储/" rel="tag"># 七牛云存储</a>
+          
+            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/eae29bee.html" rel="next" title="小米2S刷安卓原生系统">
+                <i class="fa fa-chevron-left"></i> 小米2S刷安卓原生系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/1d17cbb4.html" rel="prev" title="IntelliJ IDEA 快捷键收录">
+                IntelliJ IDEA 快捷键收录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.gif"
+               alt="Jason" />
+          <p class="site-author-name" itemprop="name">Jason</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/itechq" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/itechq" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://git.oschina.net/itechq" target="_blank" title="OSChina">
+                  
+                    <i class="fa fa-fw fa-qrcode"></i>
+                  
+                  OSChina
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为何开发"><span class="nav-number">2.</span> <span class="nav-text">为何开发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始编码"><span class="nav-number">3.</span> <span class="nav-text">开始编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛Java-SDK参考"><span class="nav-number">3.1.</span> <span class="nav-text">七牛Java SDK参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛同步代码"><span class="nav-number">3.2.</span> <span class="nav-text">七牛同步代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#剪切板代码"><span class="nav-number">3.3.</span> <span class="nav-text">剪切板代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成品"><span class="nav-number">4.</span> <span class="nav-text">成品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具操作面板"><span class="nav-number">4.1.</span> <span class="nav-text">工具操作面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷上传"><span class="nav-number">4.2.</span> <span class="nav-text">快捷上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七牛云存储截图"><span class="nav-number">4.3.</span> <span class="nav-text">七牛云存储截图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "0e65259ad6af43599cfc58151b82010d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz", "HWjJoBgvJgNla76GbuDS4aU5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

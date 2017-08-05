@@ -1,1 +1,1233 @@
-<!doctype html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Eclipse,Myeclipse,Jrebel,"><link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebel/，"><meta property="og:type" content="article"><meta property="og:title" content="Eclipse下安装配置使用Jrebel"><meta property="og:url" content="http://www.itechq.com/blog/247947ee.html"><meta property="og:site_name" content="小牧家园"><meta property="og:description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebel/，"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png"><meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png"><meta property="og:updated_time" content="2017-03-23T14:05:41.967Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Eclipse下安装配置使用Jrebel"><meta name="twitter:description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebel/，"><meta name="twitter:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"6288157089562887000",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://www.itechq.com/blog/247947ee.html"><title>Eclipse下安装配置使用Jrebel | 小牧家园</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div style="display:none"><script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script></div><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">小牧家园</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">墙外的世界</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/247947ee.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jason"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="小牧家园"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">Eclipse下安装配置使用Jrebel</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T17:26:00+08:00">2017-03-22 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">technology</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/blog/247947ee.html#comments" itemprop="discussionUrl"><span class="post-comments-count ds-thread-count" data-thread-key="blog/247947ee.html" itemprop="commentCount"></span> </a></span><span id="/blog/247947ee.html" class="leancloud_visitors" data-flag-title="Eclipse下安装配置使用Jrebel"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数 </span><span class="leancloud-visitors-count"></span></span></div></header><div class="post-body" itemprop="articleBody"><blockquote><p>Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。</p></blockquote><h1 id="JRebel安装"><a href="#JRebel安装" class="headerlink" title="JRebel安装"></a>JRebel安装</h1><p>JRebel官方网站<a href="https://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">https://zeroturnaround.com/software/jrebel/</a>，本文介绍Jrebel<code>6.2.7</code>的版本安装和使用。</p><a id="more"></a><h2 id="在线安装"><a href="#在线安装" class="headerlink" title="在线安装"></a>在线安装</h2><p>打开Eclipse/Myeclipse，点击<code>Help -&gt; Install from Site</code>，进入软件安装向导，点击<code>Add</code>按钮，输入以下信息：</p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Name：Jrebel <span class="number">6.2</span><span class="number">.7</span></div><div class="line">Location：<span class="keyword">http</span>://<span class="keyword">update</span>.zeroturnaround.com/<span class="keyword">update</span>-site-archive/<span class="keyword">update</span>-site<span class="number">-6.2</span><span class="number">.7</span>.RELEASE/</div></pre></td></tr></table></figure><p>如图所示：</p><p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png" alt="e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png"></p><p>根据向导，完成安装，然后重启Eclipse/Myeclipse，Help菜单出现<code>Jrebel Configuration</code>表示安装成功。点击该菜单，出现如下界面：</p><p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png" alt="e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png"></p><h2 id="离线安装"><a href="#离线安装" class="headerlink" title="离线安装"></a>离线安装</h2><p>离线安装包下载地址：</p><ul><li>官网下载，<a href="http://update.zeroturnaround.com/update-site-archive/update-site-6.2.7.RELEASE/update-site.zip" target="_blank" rel="external">点击下载</a></li><li>百度云下载，<a href="http://pan.baidu.com/s/1kV5GeRP" target="_blank" rel="external">点击下载</a>：<code>http://pan.baidu.com/s/1kV5GeRP</code> 密码：<code>6c5o</code></li></ul><p>Jrebel离线安装步骤与Eclipse/Myeclipse离线安装插件一样，不会请自行Google，(ˇˍˇ) 。</p><h1 id="JRebel破解"><a href="#JRebel破解" class="headerlink" title="JRebel破解"></a>JRebel破解</h1><p>下载破解文件<code>jrebel-6.2.7-cracked.zip</code>，<a href="http://download.csdn.net/download/csch112/9791784" target="_blank" rel="external">下载地址</a>。解压文件，按如下步骤破解：</p><ul><li><p>1、拷贝<code>~jrebel/jrebel.jar</code>文件到 <strong><code>[ECLIPSE_HOME]/plugins/org.zeroturnaround.eclipse.embedder_6.2.7.RELEASE-201511061610/jrebel/</code></strong>目录，覆盖原<code>jrebel.jar</code>文件。</p></li><li><p>2、拷贝~jrebel6/jrebel.jar文件到 <strong><code>[ECLIPSE_HOME]/plugins/org.zeroturnaround.eclipse.embedder_6.2.7.RELEASE-201511061610/jr6/jrebel/</code></strong>目录，覆盖原jrebel.jar文件</p></li><li><p>3、拷贝jrebel.lic文件到<strong><code>[USER_HOME]/.jrebel</code></strong>目录下，也可以在Eclipse界面手动导入。</p></li><li></li><li>4、重启Eclipse IDE。</li></ul><p>破解完成后，打开<code>Jrebel Configuration</code>显示如下信息，表示破解成功：</p><p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png" alt="e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png"></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="http://code.skyheng.com/2016/08/25/eclipse-install-jrebel/" target="_blank" rel="external">eclipse安装JRebel6.4.8热部署插件教程</a></li><li><a href="http://blog.csdn.net/paincupid/article/details/52226014" target="_blank" rel="external">安装eclipse的JRebel6.4.3的插件</a></li></ul></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"><p>微信打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"><p>支付宝打赏</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> Jason</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://www.itechq.com/blog/247947ee.html" title="Eclipse下安装配置使用Jrebel">http://www.itechq.com/blog/247947ee.html</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Eclipse/" rel="tag"># Eclipse</a> <a href="/tags/Myeclipse/" rel="tag"># Myeclipse</a> <a href="/tags/Jrebel/" rel="tag"># Jrebel</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/blog/cf3ec6ef.html" rel="next" title="npm常用命令"><i class="fa fa-chevron-left"></i> npm常用命令</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"></div></div></footer></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div class="ds-thread" data-thread-key="blog/247947ee.html" data-title="Eclipse下安装配置使用Jrebel" data-url="http://www.itechq.com/blog/247947ee.html"></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="Jason"><p class="site-author-name" itemprop="name">Jason</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">15</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/itechq" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://coding.net/u/itechq" target="_blank" title="Coding"><i class="fa fa-fw fa-github-alt"></i> Coding </a></span><span class="links-of-author-item"><a href="https://git.oschina.net/itechq" target="_blank" title="OSChina"><i class="fa fa-fw fa-qrcode"></i> OSChina</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JRebel安装"><span class="nav-number">1.</span> <span class="nav-text">JRebel安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在线安装"><span class="nav-number">1.1.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离线安装"><span class="nav-number">1.2.</span> <span class="nav-text">离线安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JRebel破解"><span class="nav-number">2.</span> <span class="nav-text">JRebel破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Jason</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">var duoshuoQuery={short_name:"itechq"};!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.id="duoshuo-script",t.src=("https:"==document.location.protocol?"https:":"http:")+"//static.duoshuo.com/embed.js",t.charset="UTF-8",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(t)}()</script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js?v=5.1.0"></script><script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script><script src="/js/src/hook-duoshuo.js"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".popup").toggle()}var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path,searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),s=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,s=r.title.trim().toLowerCase(),o=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),n=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=s&&a.forEach(function(e,t){i=s.indexOf(e),l=o.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+n+"' class='search-result-title'>"+s+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),s.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz","HWjJoBgvJgNla76GbuDS4aU5")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0===e.length)return void o.find(t).text(0);for(var i=0;i<e.length;i++){var r=e[i],s=r.get("url"),l=r.get("time"),c=document.getElementById(s);$(c).find(t).text(l)}for(var i=0;i<n.length;i++){var s=n[i],c=document.getElementById(s),u=$(c).find(t);""==u.text()&&u.text(0)}}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var r=new e,s=new AV.ACL;s.setPublicReadAccess(!0),s.setPublicWriteAccess(!0),r.setACL(s),r.set("title",o),r.set("url",n),r.set("time",1),r.save(null,{success:function(e){var t=$(document.getElementById(n));t.find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><script>!function(){var t=document.createElement("script"),s=window.location.protocol.split(":")[0];"https"===s?t.src="https://zz.bdstatic.com/linksubmit/push.js":t.src="http://push.zhanzhang.baidu.com/push.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="6wVdIb-zjtxxl3lc24OdSOGKwikU5L24khU_vh8XzuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Eclipse,Myeclipse,Jrebel," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小牧家园" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。
+
+JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse下安装配置使用Jrebel">
+<meta property="og:url" content="http://www.itechq.com/blog/247947ee.html">
+<meta property="og:site_name" content="小牧家园">
+<meta property="og:description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。
+
+JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebe">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/7453416b023d46a08e394bf244684605.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/03c673c3073449e39ebc5e170d639dbd.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/3e8d7234fb1641f3b49143fd7d611c13.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/8ecf78a6dbba4784aad4aa648e50c535.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/05453f06415b459eb1682dd3305a1b16.png">
+<meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/d3c8cb2d08664c6086a47c4751ef0691.png">
+<meta property="og:updated_time" content="2017-03-24T12:30:14.269Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse下安装配置使用Jrebel">
+<meta name="twitter:description" content="Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。
+
+JRebel安装JRebel官方网站https://zeroturnaround.com/software/jrebe">
+<meta name="twitter:image" content="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.itechq.com/blog/247947ee.html"/>
+
+
+
+
+
+  <title> Eclipse下安装配置使用Jrebel | 小牧家园 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de533f41f5c84dc4b0df3b2659719089";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259325400&web_id=1259325400" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小牧家园</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">墙外的世界</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.itechq.com/blog/247947ee.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小牧家园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Eclipse下安装配置使用Jrebel
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T17:26:00+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/blog/247947ee.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/247947ee.html" class="leancloud_visitors" data-flag-title="Eclipse下安装配置使用Jrebel">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。</p>
+</blockquote>
+<h1 id="JRebel安装"><a href="#JRebel安装" class="headerlink" title="JRebel安装"></a>JRebel安装</h1><p>JRebel官方网站<a href="https://zeroturnaround.com/software/jrebel/" target="_blank" rel="external">https://zeroturnaround.com/software/jrebel/</a>，本文介绍Jrebel<code>6.2.7</code>的版本安装和使用。</p>
+<a id="more"></a>
+<h2 id="在线安装"><a href="#在线安装" class="headerlink" title="在线安装"></a>在线安装</h2><p>打开Eclipse/Myeclipse，点击<code>Help -&gt; Install from Site</code>，进入软件安装向导，点击<code>Add</code>按钮，输入以下信息：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Name：Jrebel <span class="number">6.2</span><span class="number">.7</span></div><div class="line">Location：<span class="keyword">http</span>://<span class="keyword">update</span>.zeroturnaround.com/<span class="keyword">update</span>-site-archive/<span class="keyword">update</span>-site<span class="number">-6.2</span><span class="number">.7</span>.RELEASE/</div></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png" alt="e884ca6c3ae65e3d/a170066c297641afad1ee90d2e023d2b.png"></p>
+<p>根据向导，完成安装，然后重启Eclipse/Myeclipse，Help菜单出现<code>Jrebel Configuration</code>表示安装成功。点击该菜单，出现如下界面：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png" alt="e884ca6c3ae65e3d/e312d3b47eaa45c0be655418dba29b02.png"></p>
+<h2 id="离线安装"><a href="#离线安装" class="headerlink" title="离线安装"></a>离线安装</h2><p>离线安装包下载地址：</p>
+<ul>
+<li>官网下载，<a href="http://update.zeroturnaround.com/update-site-archive/update-site-6.2.7.RELEASE/update-site.zip" target="_blank" rel="external">点击下载</a></li>
+<li>百度云下载，<a href="http://pan.baidu.com/s/1kV5GeRP" target="_blank" rel="external">点击下载</a>：<code>http://pan.baidu.com/s/1kV5GeRP</code> 密码：<code>6c5o</code></li>
+</ul>
+<p>Jrebel离线安装步骤与Eclipse/Myeclipse离线安装插件一样，不会请自行Google，(ˇˍˇ) 。</p>
+<h1 id="JRebel破解"><a href="#JRebel破解" class="headerlink" title="JRebel破解"></a>JRebel破解</h1><p>下载破解文件<code>jrebel-6.2.7-cracked.zip</code>，<a href="http://download.csdn.net/download/csch112/9791784" target="_blank" rel="external">下载地址</a>。解压文件，按如下步骤破解：</p>
+<ul>
+<li><p>1、拷贝<code>~jrebel/jrebel.jar</code>文件到 <strong><code>[ECLIPSE_HOME]/plugins/org.zeroturnaround.eclipse.embedder_6.2.7.RELEASE-201511061610/jrebel/</code></strong>目录，覆盖原<code>jrebel.jar</code>文件。</p>
+</li>
+<li><p>2、拷贝~jrebel6/jrebel.jar文件到 <strong><code>[ECLIPSE_HOME]/plugins/org.zeroturnaround.eclipse.embedder_6.2.7.RELEASE-201511061610/jr6/jrebel/</code></strong>目录，覆盖原jrebel.jar文件</p>
+</li>
+<li><p>3、拷贝jrebel.lic文件到<strong><code>[USER_HOME]/.jrebel</code></strong>目录下，也可以在Eclipse界面手动导入。</p>
+</li>
+<li><p>4、重启Eclipse IDE。</p>
+</li>
+</ul>
+<p>破解完成后，打开<code>Jrebel Configuration</code>显示如下信息，表示破解成功：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png" alt="e884ca6c3ae65e3d/4b3ac7bb349b441a867669d7a4febbe7.png"></p>
+<h1 id="Jrebel使用"><a href="#Jrebel使用" class="headerlink" title="Jrebel使用"></a>Jrebel使用</h1><blockquote>
+<p>以下步骤是在Myeclipse2014下用Tomcat启动Web程序为例配置使用。</p>
+</blockquote>
+<h2 id="工程配置"><a href="#工程配置" class="headerlink" title="工程配置"></a>工程配置</h2><p>点击Myeclipse菜单<code>Help -&gt; JRebel Configuration</code>，打开<code>Project Tab</code>，此Tab下会列出工作空间所有工程，勾选需要监控工程后面的第一个Checkbox。勾选后，Jrebel会在当前工程目录下自动生成<code>rebel.xml</code>配置文件，如图所示:</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/7453416b023d46a08e394bf244684605.png" alt="e887d3d3ef4dd780/7453416b023d46a08e394bf244684605.png"></p>
+<p>对应工程目录会自动生成<code>rebel.xml</code>文件，如图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/03c673c3073449e39ebc5e170d639dbd.png" alt="e887d3d3ef4dd780/03c673c3073449e39ebc5e170d639dbd.png"></p>
+<h2 id="应用服务器配置"><a href="#应用服务器配置" class="headerlink" title="应用服务器配置"></a>应用服务器配置</h2><ul>
+<li>Jrebel启动设置</li>
+</ul>
+<p>点击Myeclipse菜单<code>Help -&gt; JRebel Configuration</code>，打开<code>Startup Tab</code>，选中<code>Run via IDE</code>选项，如下图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/3e8d7234fb1641f3b49143fd7d611c13.png" alt="e887d3d3ef4dd780/3e8d7234fb1641f3b49143fd7d611c13.png"></p>
+<ul>
+<li>Jrebel高级设置</li>
+</ul>
+<p>点击Myeclipse菜单<code>Help -&gt; JRebel Configuration</code>，打开<code>Advaced Tab</code>，将<code>Jrebel Agent</code>选项设置为<code>JRebel 6 Agent 6.2.7 (201511061217)</code>，其他选项可根据自己需要勾选修改，如下图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/8ecf78a6dbba4784aad4aa648e50c535.png" alt="e887d3d3ef4dd780/8ecf78a6dbba4784aad4aa648e50c535.png"></p>
+<ul>
+<li>Tomcat服务器Jrebel Agent绑定设置</li>
+</ul>
+<p>点击Myeclipse菜单<code>Window -&gt; Preferences -&gt; Myeclipse -&gt; Servers -&gt; Tomcat</code>，选择你本地配置的Tomcat版本，勾选<code>JRebel settings</code>下的<code>Enable JRebel agent</code>，如下图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/05453f06415b459eb1682dd3305a1b16.png" alt="e887d3d3ef4dd780/05453f06415b459eb1682dd3305a1b16.png"></p>
+<ul>
+<li>Tomcat服务器JVM启动参数设置</li>
+</ul>
+<p>点击Myeclipse菜单<code>Window -&gt; Preferences -&gt; Myeclipse -&gt; Servers -&gt; Tomcat</code>，选择你本地配置的Tomcat版本，点击<code>Tomcat X.x -&gt; JDK</code>，在<code>Optional Java VM arguments</code>下输入以下内容，</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby">Xmx512M </span></div><div class="line">-<span class="ruby">Xms512M </span></div><div class="line">-<span class="ruby"><span class="symbol">XX:</span>MaxPermSize=<span class="number">1024</span>m</span></div></pre></td></tr></table></figure>
+<p>解决启动时出现<strong><code>java.lang.OutOfMemoryError: PermGen space</code></strong> ，如下图所示：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/e887d3d3ef4dd780/d3c8cb2d08664c6086a47c4751ef0691.png" alt="e887d3d3ef4dd780/d3c8cb2d08664c6086a47c4751ef0691.png"></p>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>部署Web应用到Tocmat服务器，启动Tomcat服务器，出现以下启动信息，代表配置成功。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">JRebel: Starting logging to file: C:\Users\XX\.jrebel\jrebel.log</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  #############################################################</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  JRebel Agent <span class="number">6.2</span><span class="number">.7</span> (<span class="number">201511061217</span>)</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  (c) Copyright ZeroTurnaround AS, Estonia, Tartu.</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  Over the last <span class="number">1</span> days JRebel prevented</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  at least <span class="number">0</span> redeploys/restarts saving you about <span class="number">0</span> hours.</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  Licensed to VIMACER (ZeroTurnaround)</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:   <span class="keyword">with</span> the following restrictions: </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:   ### Hello World Cracked ### :)</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  License type: enterprise</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  Valid <span class="keyword">from</span>: July <span class="number">14</span>, <span class="number">2014</span></div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  Valid until: August <span class="number">18</span>, <span class="number">2888</span></div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  #############################################################</div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">03</span> JRebel:  </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">04</span> JRebel: </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">04</span> JRebel: A newer version <span class="string">'7.0.6'</span> is available for download </div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">04</span> JRebel: <span class="keyword">from</span> http:<span class="comment">//zeroturnaround.com/software/jrebel/download/</span></div><div class="line"><span class="number">2017</span><span class="number">-03</span><span class="number">-24</span> <span class="number">16</span>:<span class="number">15</span>:<span class="number">04</span> JRebel:</div></pre></td></tr></table></figure>
+<p>更多配置，请参考<a href="https://manuals.zeroturnaround.com/jrebel/ide/eclipse.html" target="_blank" rel="external">官方手册</a>，现在开始告别频繁重启服务器带来的各种痛苦吧~~</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://code.skyheng.com/2016/08/25/eclipse-install-jrebel/" target="_blank" rel="external">eclipse安装JRebel6.4.8热部署插件教程</a></li>
+<li><a href="http://blog.csdn.net/paincupid/article/details/52226014" target="_blank" rel="external">安装eclipse的JRebel6.4.3的插件</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.png" alt="Jason WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.png" alt="Jason Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Jason
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.itechq.com/blog/247947ee.html" title="Eclipse下安装配置使用Jrebel">http://www.itechq.com/blog/247947ee.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Eclipse/" rel="tag"># Eclipse</a>
+          
+            <a href="/tags/Myeclipse/" rel="tag"># Myeclipse</a>
+          
+            <a href="/tags/Jrebel/" rel="tag"># Jrebel</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cf3ec6ef.html" rel="next" title="npm常用命令">
+                <i class="fa fa-chevron-left"></i> npm常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.gif"
+               alt="Jason" />
+          <p class="site-author-name" itemprop="name">Jason</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/itechq" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/itechq" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://git.oschina.net/itechq" target="_blank" title="OSChina">
+                  
+                    <i class="fa fa-fw fa-qrcode"></i>
+                  
+                  OSChina
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JRebel安装"><span class="nav-number">1.</span> <span class="nav-text">JRebel安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在线安装"><span class="nav-number">1.1.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离线安装"><span class="nav-number">1.2.</span> <span class="nav-text">离线安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JRebel破解"><span class="nav-number">2.</span> <span class="nav-text">JRebel破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jrebel使用"><span class="nav-number">3.</span> <span class="nav-text">Jrebel使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工程配置"><span class="nav-number">3.1.</span> <span class="nav-text">工程配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用服务器配置"><span class="nav-number">3.2.</span> <span class="nav-text">应用服务器配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证结果"><span class="nav-number">3.3.</span> <span class="nav-text">验证结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "0e65259ad6af43599cfc58151b82010d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Sawuf5QjHryPHokvAIrnwP65-gzGzoHsz", "HWjJoBgvJgNla76GbuDS4aU5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
