@@ -95,7 +95,7 @@
       &lt;blockquote&gt;
 &lt;p&gt;Java Web应用开发经常修改Bean、Action、Service就需要重启Web服务器，JRebel可以实现Tomcat热部署，大量节省服务器重启时间，提高个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面介绍Eclipse下安装配置及使用。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;JRebel安装&quot;&gt;&lt;a href=&quot;#JRebel安装&quot; class=&quot;headerlink&quot; title=&quot;JRebel安装&quot;&gt;&lt;/a&gt;JRebel安装&lt;/h1&gt;&lt;p&gt;JRebel官方网站&lt;a href=&quot;https://zeroturnaround.com/software/jrebel/&quot;&gt;https://zeroturnaround.com/software/jrebel/&lt;/a&gt;，本文介绍Jrebel&lt;code&gt;6.2.7&lt;/code&gt;的版本安装和使用。&lt;/p&gt;
+&lt;h1 id=&quot;JRebel安装&quot;&gt;&lt;a href=&quot;#JRebel安装&quot; class=&quot;headerlink&quot; title=&quot;JRebel安装&quot;&gt;&lt;/a&gt;JRebel安装&lt;/h1&gt;&lt;p&gt;JRebel官方网站&lt;a href=&quot;https://zeroturnaround.com/software/jrebel/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://zeroturnaround.com/software/jrebel/&lt;/a&gt;，本文介绍Jrebel&lt;code&gt;6.2.7&lt;/code&gt;的版本安装和使用。&lt;/p&gt;
     
     </summary>
     
@@ -261,8 +261,8 @@
       &lt;blockquote&gt;
 &lt;p&gt;本文是记录自己在Windows平台下安装配置NodeJS环境，供自己以后参考。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;安装准备&quot;&gt;&lt;a href=&quot;#安装准备&quot; class=&quot;headerlink&quot; title=&quot;安装准备&quot;&gt;&lt;/a&gt;安装准备&lt;/h1&gt;&lt;p&gt;NodeJS安装包及源码下载地址为:&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;https://nodejs.org/en/&lt;/a&gt;。进入&lt;a href=&quot;https://nodejs.org/en/download/&quot;&gt;下载链接&lt;/a&gt;：&lt;br&gt;&lt;img src=&quot;http://o7xt53rmp.bkt.clouddn.com/8c6b2df744b1c8f9/ac45de93c13146b582f400ce246a83ef.png&quot; alt=&quot;8c6b2df744b1c8f9/ac45de93c13146b582f400ce246a83ef.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我下载的是&lt;a href=&quot;https://nodejs.org/dist/v6.9.5/node-v6.9.5-win-x64.zip&quot;&gt;node-v6.9.5-win-x64.zip&lt;/a&gt;。&lt;/p&gt;
+&lt;h1 id=&quot;安装准备&quot;&gt;&lt;a href=&quot;#安装准备&quot; class=&quot;headerlink&quot; title=&quot;安装准备&quot;&gt;&lt;/a&gt;安装准备&lt;/h1&gt;&lt;p&gt;NodeJS安装包及源码下载地址为:&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org/en/&lt;/a&gt;。进入&lt;a href=&quot;https://nodejs.org/en/download/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载链接&lt;/a&gt;：&lt;br&gt;&lt;img src=&quot;http://o7xt53rmp.bkt.clouddn.com/8c6b2df744b1c8f9/ac45de93c13146b582f400ce246a83ef.png&quot; alt=&quot;8c6b2df744b1c8f9/ac45de93c13146b582f400ce246a83ef.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我下载的是&lt;a href=&quot;https://nodejs.org/dist/v6.9.5/node-v6.9.5-win-x64.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;node-v6.9.5-win-x64.zip&lt;/a&gt;。&lt;/p&gt;
     
     </summary>
     
@@ -332,12 +332,12 @@
     
     <summary type="html">
     
-      &lt;p&gt;用&lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;搭建博客差不多一年了，使用&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot;&gt;NexT&lt;/a&gt;主题，文章没写几篇，2017争取每周至少写一篇博客。今天对博客空间做了一次版本升级，由于原来初次配置博客时，&lt;code&gt;站点配置文件&lt;/code&gt;及&lt;code&gt;主题配置文件&lt;/code&gt;没有分离，当时还修改了&lt;code&gt;NexT&lt;/code&gt;主题部分源码，所以本次升级基本上是重新安装了一遍。&lt;/p&gt;
+      &lt;p&gt;用&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;搭建博客差不多一年了，使用&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NexT&lt;/a&gt;主题，文章没写几篇，2017争取每周至少写一篇博客。今天对博客空间做了一次版本升级，由于原来初次配置博客时，&lt;code&gt;站点配置文件&lt;/code&gt;及&lt;code&gt;主题配置文件&lt;/code&gt;没有分离，当时还修改了&lt;code&gt;NexT&lt;/code&gt;主题部分源码，所以本次升级基本上是重新安装了一遍。&lt;/p&gt;
 &lt;h1 id=&quot;升级目标&quot;&gt;&lt;a href=&quot;#升级目标&quot; class=&quot;headerlink&quot; title=&quot;升级目标&quot;&gt;&lt;/a&gt;升级目标&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Hexo版本由&lt;code&gt;3.2.0&lt;/code&gt;升到&lt;code&gt;3.2.2&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;NexT版本由&lt;code&gt;5.0.0&lt;/code&gt;升到&lt;code&gt;5.1.0&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;主题配置文件分离（便于以后主题升级）&lt;/li&gt;
-&lt;li&gt;集成&lt;a href=&quot;https://www.algolia.com/&quot;&gt;Algolia&lt;/a&gt;搜索引擎&lt;/li&gt;
+&lt;li&gt;集成&lt;a href=&quot;https://www.algolia.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Algolia&lt;/a&gt;搜索引擎&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -740,7 +740,7 @@
     <summary type="html">
     
       &lt;p&gt;CentOS系统自带OpenJDK，但是我们平时开发都是用OracleJDK，下面记录如何卸载OpenJDK，再安装OracleJDK，供以后查阅。&lt;/p&gt;
-&lt;h1 id=&quot;卸载OpenJDK&quot;&gt;&lt;a href=&quot;#卸载OpenJDK&quot; class=&quot;headerlink&quot; title=&quot;卸载OpenJDK&quot;&gt;&lt;/a&gt;卸载OpenJDK&lt;/h1&gt;&lt;h2 id=&quot;查看CentOS是否安装JDK&quot;&gt;&lt;a href=&quot;#查看CentOS是否安装JDK&quot; class=&quot;headerlink&quot; title=&quot;查看CentOS是否安装JDK&quot;&gt;&lt;/a&gt;查看CentOS是否安装JDK&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;java -version&lt;/code&gt;命令，如下所示：&lt;br&gt;&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ &lt;span class=&quot;keyword&quot;&gt;java &lt;/span&gt;-version&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;openjdk version &lt;span class=&quot;string&quot;&gt;&quot;1.8.0_91&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OpenJDK Runtime Environment (&lt;span class=&quot;keyword&quot;&gt;build &lt;/span&gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;_91-&lt;span class=&quot;keyword&quot;&gt;b14)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/span&gt;OpenJDK Server VM (&lt;span class=&quot;keyword&quot;&gt;build &lt;/span&gt;&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;91&lt;/span&gt;-&lt;span class=&quot;keyword&quot;&gt;b14, &lt;/span&gt;mixed mode)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;卸载OpenJDK&quot;&gt;&lt;a href=&quot;#卸载OpenJDK&quot; class=&quot;headerlink&quot; title=&quot;卸载OpenJDK&quot;&gt;&lt;/a&gt;卸载OpenJDK&lt;/h1&gt;&lt;h2 id=&quot;查看CentOS是否安装JDK&quot;&gt;&lt;a href=&quot;#查看CentOS是否安装JDK&quot; class=&quot;headerlink&quot; title=&quot;查看CentOS是否安装JDK&quot;&gt;&lt;/a&gt;查看CentOS是否安装JDK&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;java -version&lt;/code&gt;命令，如下所示：&lt;br&gt;&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ &lt;span class=&quot;keyword&quot;&gt;java &lt;/span&gt;-version&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;openjdk version &lt;span class=&quot;string&quot;&gt;&quot;1.8.0_91&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OpenJDK Runtime Environment (&lt;span class=&quot;keyword&quot;&gt;build &lt;/span&gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;_91-&lt;span class=&quot;keyword&quot;&gt;b14)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OpenJDK Server VM (&lt;span class=&quot;keyword&quot;&gt;build &lt;/span&gt;&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;91&lt;/span&gt;-&lt;span class=&quot;keyword&quot;&gt;b14, &lt;/span&gt;mixed mode)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     
@@ -847,7 +847,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;em&gt;本文参考&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000&quot;&gt;廖雪峰Git教程&lt;/a&gt;，根据个人使用情况整理完成。&lt;/em&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;em&gt;本文参考&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰Git教程&lt;/a&gt;，根据个人使用情况整理完成。&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&quot;基本配置&quot;&gt;&lt;a href=&quot;#基本配置&quot; class=&quot;headerlink&quot; title=&quot;基本配置&quot;&gt;&lt;/a&gt;基本配置&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;red&quot;&gt;说明：以下配置都以Windows系统为例！&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;设置用户名、邮箱&quot;&gt;&lt;a href=&quot;#设置用户名、邮箱&quot; class=&quot;headerlink&quot; title=&quot;设置用户名、邮箱&quot;&gt;&lt;/a&gt;设置用户名、邮箱&lt;/h2&gt;&lt;p&gt;提交代码前，需要告诉git是谁提交，邮箱是什么，所以需要对git做基本配置。打开终端，执行如下命令：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git config --global user.name &amp;quot;你的名字或昵称&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git config --global user.email &amp;quot;你的邮箱&amp;quot;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -930,9 +930,9 @@
     
       &lt;h1 id=&quot;缘起&quot;&gt;&lt;a href=&quot;#缘起&quot; class=&quot;headerlink&quot; title=&quot;缘起&quot;&gt;&lt;/a&gt;缘起&lt;/h1&gt;&lt;p&gt;三年前买下&lt;a href=&quot;http://www.itechq.com/&quot;&gt;&lt;code&gt;www.itechq.com&lt;/code&gt;&lt;/a&gt;这个域名，一直想折腾个自己的博客。由于种种原因，一直没有去折腾。随着国家的长城防火墙越来越厉害，免费翻墙变得越来越困难，从GoAgent到XX-Net，稳定性越来越差。今年年初，实在受不了了，就买了个搬瓦工的VPS（10G SSD，512M内存，一年19刀），自己搭建了一个&lt;code&gt;Shadowsocks Server&lt;/code&gt;，每月1000G流量，手机、笔记本都通过它翻墙，目前还比较稳定（不要问我为啥不直接买个收费VPN，因为程序猿爱折腾）。VPN搞定后，发现VPS系统资源利用率很少，此时，又激发了自己的博客梦，从而走上了Wordpress、Hexo的折腾之路……&lt;/p&gt;
 &lt;h1 id=&quot;为何开发&quot;&gt;&lt;a href=&quot;#为何开发&quot; class=&quot;headerlink&quot; title=&quot;为何开发&quot;&gt;&lt;/a&gt;为何开发&lt;/h1&gt;&lt;p&gt;刚开始博客空间是用WP搭建，花了差不多两周时间配置、修改主题代码，后来因为WP对Markdown支持太弱了，而且相对来说比较重，选择放弃，最后选择Hexo纯静态博客空间，托管到Github、Coding。之所以选择七牛作为存储，是因为在配置WP插件时用到&lt;code&gt;wpjam-qiniu&lt;/code&gt;插件，可以将网站上的js、css、image等资源自动同步到七牛云，而Hexo没有此类插件。&lt;/p&gt;
-&lt;p&gt;后来在七牛官网看到官方同步工具&lt;a href=&quot;http://developer.qiniu.com/code/v6/tool/qrsbox.html&quot;&gt;qrsbox&lt;/a&gt;，虽然该工具能够同步image到七牛云，但是和自己想想的还是有一定差距，如：图片命名、存储目录、外链地址拷贝都比较麻烦。此时在简书上看到一篇文章&lt;strong&gt;&lt;a href=&quot;http://www.jianshu.com/p/6dce6094bf61&quot;&gt;如何使用七牛云做为图床？&lt;/a&gt;&lt;/strong&gt;，看完后还是觉得步骤较为复杂，没有达到自己想要的效果，但它却触发了自己写个小工具的想法，于是开始构思工具包括哪些功能，最后确定如下功能：&lt;/p&gt;
+&lt;p&gt;后来在七牛官网看到官方同步工具&lt;a href=&quot;http://developer.qiniu.com/code/v6/tool/qrsbox.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;qrsbox&lt;/a&gt;，虽然该工具能够同步image到七牛云，但是和自己想想的还是有一定差距，如：图片命名、存储目录、外链地址拷贝都比较麻烦。此时在简书上看到一篇文章&lt;strong&gt;&lt;a href=&quot;http://www.jianshu.com/p/6dce6094bf61&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何使用七牛云做为图床？&lt;/a&gt;&lt;/strong&gt;，看完后还是觉得步骤较为复杂，没有达到自己想要的效果，但它却触发了自己写个小工具的想法，于是开始构思工具包括哪些功能，最后确定如下功能：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;支持从剪切板获取图像上传；&lt;strong&gt;灵感来自 &lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot;&gt;作业部落 CMD Markdown&lt;/a&gt;图片上传效果（一款很棒的Markdown编辑工具）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;支持从剪切板获取图像上传；&lt;strong&gt;灵感来自 &lt;a href=&quot;https://www.zybuluo.com/mdeditor&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;作业部落 CMD Markdown&lt;/a&gt;图片上传效果（一款很棒的Markdown编辑工具）&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;支持本地图像上传；&lt;/li&gt;
 &lt;li&gt;支持从网络下载图像并上传；&lt;/li&gt;
 &lt;li&gt;图像上传后自动生成Markdown格式的图片引用标签；&lt;/li&gt;
@@ -998,7 +998,7 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;为了折腾一个游戏，把原来那台小米2S重新翻出来折腾，发现升到MIUI7后，那手机一个卡啊，真是醉了。作为一个喜欢折腾程序猿，立马就想到是不是可以刷个安卓原生系统，于是Google（不要问我为啥用Google，大家都懂的！！）一把，对比了几个原生系统，最后选择了&lt;a href=&quot;http://www.miui.com/space-uid-426143.html&quot;&gt;秋叶随风&lt;/a&gt;大神提供的刷机包。&lt;/p&gt;
+&lt;p&gt;为了折腾一个游戏，把原来那台小米2S重新翻出来折腾，发现升到MIUI7后，那手机一个卡啊，真是醉了。作为一个喜欢折腾程序猿，立马就想到是不是可以刷个安卓原生系统，于是Google（不要问我为啥用Google，大家都懂的！！）一把，对比了几个原生系统，最后选择了&lt;a href=&quot;http://www.miui.com/space-uid-426143.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;秋叶随风&lt;/a&gt;大神提供的刷机包。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;说明：本文只是记录自己刷机过程及刷机中遇到的问题，对于基本操作步骤，本文不做详细描述。&lt;/strong&gt;&lt;br&gt;
     
@@ -1069,19 +1069,19 @@
     
       &lt;h2 id=&quot;安装准备&quot;&gt;&lt;a href=&quot;#安装准备&quot; class=&quot;headerlink&quot; title=&quot;安装准备&quot;&gt;&lt;/a&gt;安装准备&lt;/h2&gt;&lt;p&gt;安装文件清单&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Mysql 5.6 &lt;a href=&quot;http://cdn.mysql.com/Downloads/MySQLInstaller/mysql-installer-community-5.6.26.0.msi&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apache 2.2 &lt;a href=&quot;http://archive.apache.org/dist/httpd/&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Python 2.7 &lt;a href=&quot;https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;mod_python 3.3 &lt;a href=&quot;http://archive.apache.org/dist/httpd/modpython/win/3.3.1/mod_python-3.3.1.win32-py2.5-Apache2.2.exe&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;py27-pysvn-svn &lt;a href=&quot;http://pysvn.tigris.org/files/documents/1233/49404/py27-pysvn-svn1811-1.7.10-1584.exe&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://pysvn.tigris.org/servlets/ProjectDocumentList?folderID=1768&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;setuptools &lt;a href=&quot;https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;https://pypi.python.org/pypi/setuptools/0.6c11&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;patch-2.5.9.7-setup &lt;a href=&quot;http://ncu.dl.sourceforge.net/project/gnuwin32/patch/2.5.9-7/patch-2.5.9-7-setup.exe&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://sourceforge.net/projects/gnuwin32/files/patch/2.5.9-7/&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;memcached &lt;a href=&quot;http://s3.amazonaws.com/downloads.northscale.com/memcached-win64-1.4.4-14.zip&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;python-memcached &lt;a href=&quot;ftp://ftp.tummy.com/pub/python-memcached/python-memcached-latest.tar.gz&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://www.tummy.com/software/python-memcached/&quot;&gt;参考地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;mysql-python &lt;a href=&quot;https://pypi.python.org/packages/2.7/M/MySQL-python/MySQL-python-1.2.5.win32-py2.7.exe#md5=6f43f42516ea26e79cfb100af69a925e&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;https://pypi.python.org/pypi/MySQL-python/1.2.5&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;pycrypto-2.6.1 &lt;a href=&quot;http://www.voidspace.org.uk/python/pycrypto-2.6.1/&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;mod_wsgi-win32-ap22py27-3.3.so &lt;a href=&quot;https://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-win32-ap22py27-3.3.so&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;RBTools &lt;a href=&quot;https://downloads.reviewboard.org/releases/RBTools/0.7/RBTools-0.7.4.exe&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mysql 5.6 &lt;a href=&quot;http://cdn.mysql.com/Downloads/MySQLInstaller/mysql-installer-community-5.6.26.0.msi&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Apache 2.2 &lt;a href=&quot;http://archive.apache.org/dist/httpd/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Python 2.7 &lt;a href=&quot;https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;mod_python 3.3 &lt;a href=&quot;http://archive.apache.org/dist/httpd/modpython/win/3.3.1/mod_python-3.3.1.win32-py2.5-Apache2.2.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;py27-pysvn-svn &lt;a href=&quot;http://pysvn.tigris.org/files/documents/1233/49404/py27-pysvn-svn1811-1.7.10-1584.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://pysvn.tigris.org/servlets/ProjectDocumentList?folderID=1768&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;setuptools &lt;a href=&quot;https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;https://pypi.python.org/pypi/setuptools/0.6c11&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;patch-2.5.9.7-setup &lt;a href=&quot;http://ncu.dl.sourceforge.net/project/gnuwin32/patch/2.5.9-7/patch-2.5.9-7-setup.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://sourceforge.net/projects/gnuwin32/files/patch/2.5.9-7/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;memcached &lt;a href=&quot;http://s3.amazonaws.com/downloads.northscale.com/memcached-win64-1.4.4-14.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;python-memcached &lt;a href=&quot;ftp://ftp.tummy.com/pub/python-memcached/python-memcached-latest.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;http://www.tummy.com/software/python-memcached/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;mysql-python &lt;a href=&quot;https://pypi.python.org/packages/2.7/M/MySQL-python/MySQL-python-1.2.5.win32-py2.7.exe#md5=6f43f42516ea26e79cfb100af69a925e&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt; &lt;a href=&quot;https://pypi.python.org/pypi/MySQL-python/1.2.5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;pycrypto-2.6.1 &lt;a href=&quot;http://www.voidspace.org.uk/python/pycrypto-2.6.1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;mod_wsgi-win32-ap22py27-3.3.so &lt;a href=&quot;https://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-win32-ap22py27-3.3.so&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;RBTools &lt;a href=&quot;https://downloads.reviewboard.org/releases/RBTools/0.7/RBTools-0.7.4.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
