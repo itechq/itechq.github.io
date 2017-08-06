@@ -198,48 +198,6 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/1d17cbb4.html</loc>
-    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
-    <data>
-        <display>
-        <title>IntelliJ IDEA 快捷键收录</title>
-        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
-        
-        <tag>IntelliJ IDEA</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/ec94ab3a.html</loc>
-    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
-    <data>
-        <display>
-        <title>Windows下ReviewBoard安装与配置</title>
-        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
-        
-        <tag>Windows</tag>
-         
-        <tag>Reviewboard</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.itechq.com/blog/d0c5e74e.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
@@ -248,6 +206,48 @@
         <pubTime>2016-06-11T02:58:00.000Z</pubTime>
         
         <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
+    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
+    <data>
+        <display>
+        <title>小米2S刷安卓原生系统</title>
+        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        
+        <tag>小米2S</tag>
+         
+        <tag>安卓原生</tag>
+         
+         
+           
+             
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/1d17cbb4.html</loc>
+    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
+    <data>
+        <display>
+        <title>IntelliJ IDEA 快捷键收录</title>
+        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
+        
+        <tag>IntelliJ IDEA</tag>
          
          
            
@@ -302,21 +302,21 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
+    <loc>http://www.itechq.com/blog/ec94ab3a.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
         <display>
-        <title>小米2S刷安卓原生系统</title>
-        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        <title>Windows下ReviewBoard安装与配置</title>
+        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
         
-        <tag>小米2S</tag>
+        <tag>Windows</tag>
          
-        <tag>安卓原生</tag>
+        <tag>Reviewboard</tag>
          
          
            
              
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
           
         </display>
     </data>
