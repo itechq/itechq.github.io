@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.itechq.com/"/>
-  <updated>2017-03-24T12:30:14.269Z</updated>
+  <updated>2017-08-06T14:59:28.412Z</updated>
   <id>http://www.itechq.com/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过hexo-deployer-rsync部署Hexo博客到VPS主机</title>
+    <link href="http://www.itechq.com/blog/f79573e2.html"/>
+    <id>http://www.itechq.com/blog/f79573e2.html</id>
+    <published>2017-08-06T13:41:09.000Z</published>
+    <updated>2017-08-06T14:59:28.412Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原来Hexo博客托管在<a href="https://github.com/" target="_blank" rel="external">Github</a>和<a href="https://coding.net" target="_blank" rel="external">Coding</a>，后来买了一台VPS用于翻墙，想着直接将博客部署到VPS上面，查了官网部署方式，可通过<code>hexo-deployer-rsync</code>、<code>hexo-deployer-ftpsync</code>两种方式推送到VPS主机，尝试了FTP方式，不太稳定；今天通过linux的rsync方式从windows客户端平台部署到linux平台。</p>
+</blockquote>
+<h1 id="VPS主机安装rsync服务"><a href="#VPS主机安装rsync服务" class="headerlink" title="VPS主机安装rsync服务"></a>VPS主机安装rsync服务</h1><blockquote>
+<p>我购买的VPS主机是Centos7 64位操作系统。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="安装rsysnc及xinnetd"><a href="#安装rsysnc及xinnetd" class="headerlink" title="安装rsysnc及xinnetd"></a>安装rsysnc及xinnetd</h2><ul>
+<li>执行以下命令：</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> rsync</div><div class="line">yum  <span class="keyword">install</span> xinetd</div></pre></td></tr></table></figure>
+<ul>
+<li>检查是否安装成功</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># rpm -qa|grep rsync</div><div class="line">rsync<span class="number">-3.0</span><span class="number">.9</span><span class="number">-17.</span>el7.x86_64</div><div class="line"># rpm -qa|grep xinetd</div><div class="line">xinetd<span class="number">-2.3</span><span class="number">.15</span><span class="number">-13.</span>el7.x86_64</div></pre></td></tr></table></figure>
+<h2 id="修改-etc-xinetd-d-rsync配置文件"><a href="#修改-etc-xinetd-d-rsync配置文件" class="headerlink" title="修改/etc/xinetd.d/rsync配置文件"></a>修改<code>/etc/xinetd.d/rsync</code>配置文件</h2><blockquote>
+<p>修改<code>/etc/xinetd.d/rsync</code>配置文件，若没有该文件，则新建一个，将<code>disable=yes</code>改成<code>disable=no</code>。</p>
+</blockquote>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">service rsync</div><div class="line">&#123;</div><div class="line">    <span class="attr">disable</span> = no</div><div class="line">    <span class="attr">socket_type</span> = stream</div><div class="line">    <span class="attr">wait</span> = no</div><div class="line">    <span class="attr">user</span> = root</div><div class="line">    <span class="attr">server</span> = /usr/bin/rsync</div><div class="line">    <span class="attr">server_args</span> = --daemon</div><div class="line">    log_on_failure += USERID</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="修改-etc-rsyncd-conf配置文件"><a href="#修改-etc-rsyncd-conf配置文件" class="headerlink" title="修改/etc/rsyncd.conf配置文件"></a>修改<code>/etc/rsyncd.conf</code>配置文件</h2><blockquote>
+<p>修改<code>/etc/rsyncd.conf</code>，主要包括账号密码文件路径、同步路径等内容，信息如下：</p>
+</blockquote>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#****全局参数*****</span></div><div class="line"><span class="meta"># 服务监听端口，默认873，我改了好像没用，有知道原因的朋友可以告知一下</span></div><div class="line">port=<span class="number">873</span></div><div class="line"><span class="meta"># 运行RSYNC守护进程的用户</span></div><div class="line">uid=root</div><div class="line"><span class="meta"># 运行RSYNC守护进程的组</span></div><div class="line">gid=root</div><div class="line"><span class="meta"># 不使用chroot</span></div><div class="line">use chroot=no</div><div class="line"><span class="meta"># yes只读 值为NO意思为可读可写模式，数据恢复用NO</span></div><div class="line"><span class="meta"># read only=no</span></div><div class="line"><span class="meta"># 允许访问的IP，*表示所有IP都可以访问</span></div><div class="line">hosts allow=*</div><div class="line"><span class="meta"># 最大连接数为4</span></div><div class="line">max connextions=<span class="number">4</span></div><div class="line"></div><div class="line"><span class="meta">#*****模块参数*****</span></div><div class="line"><span class="meta"># 这里是认证的模块名，在client端需要指定</span></div><div class="line">[blog] </div><div class="line"><span class="meta"># 需要做镜像的目录,不可缺少</span></div><div class="line">path=/usr/local/nginx/site/xxx</div><div class="line"><span class="meta"># 这个模块的注释信息 </span></div><div class="line">comment=deploy blog</div><div class="line"><span class="meta"># 可以忽略一些无关的IO错误</span></div><div class="line">ignore errors</div><div class="line"><span class="meta"># yes只读 值为NO意思为可读可写模式，数据恢复用NO	</span></div><div class="line">read only=no</div><div class="line"><span class="meta"># 不允许列文件</span></div><div class="line">list=no</div><div class="line"><span class="meta"># 认证的用户名，如果没有这行则表明是匿名，此用户与系统无关</span></div><div class="line">auth users=root</div><div class="line"><span class="meta"># 密码文件位置，认证文件设置，设置用户名和密码</span></div><div class="line">secrets file=/etc/rsyncd.secrets</div></pre></td></tr></table></figure>
+<h2 id="设置-etc-rsyncd-secrets认证文件"><a href="#设置-etc-rsyncd-secrets认证文件" class="headerlink" title="设置/etc/rsyncd.secrets认证文件"></a>设置<code>/etc/rsyncd.secrets</code>认证文件</h2><blockquote>
+<p>在上边的配置文件中已经写好路径,<code>/etc/rsyncd.secrets</code>(名字随便写，只要和上边配置文件里的一致即可)，格式(一行一个用户)，该账号密码是linux中存在的</p>
+</blockquote>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">root:</span>xxxx</div></pre></td></tr></table></figure>
+<h2 id="配置文件授权"><a href="#配置文件授权" class="headerlink" title="配置文件授权"></a>配置文件授权</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">chown</span> root.root /etc/<span class="regexp">rsyncd.*</span></div><div class="line">chmod <span class="number">600</span> /etc/<span class="regexp">rsyncd.*</span></div></pre></td></tr></table></figure>
+<h2 id="重启xinetd服务"><a href="#重启xinetd服务" class="headerlink" title="重启xinetd服务"></a>重启<code>xinetd</code>服务</h2><ul>
+<li>重启服务</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">systemctl</span> <span class="selector-tag">restart</span>  <span class="selector-tag">xinetd</span><span class="selector-class">.service</span></div></pre></td></tr></table></figure>
+<ul>
+<li>检查是否启动成功</li>
+</ul>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an | grep 873</span></div><div class="line">tcp6      <span class="number"> 0 </span>    <span class="number"> 0 </span>:::873                  :::*                    LISTEN</div></pre></td></tr></table></figure>
+<h1 id="Windows客户端安装cwRsync客户端及配置"><a href="#Windows客户端安装cwRsync客户端及配置" class="headerlink" title="Windows客户端安装cwRsync客户端及配置"></a>Windows客户端安装cwRsync客户端及配置</h1><p>下载<code>cwRsync</code>客户端安装程序，链接：<a href="http://pan.baidu.com/s/1o8UJPJO" target="_blank" rel="external">http://pan.baidu.com/s/1o8UJPJO</a> 密码：<code>oahu</code>。</p>
+<h2 id="安装cwRsync-4-1-0安装程序"><a href="#安装cwRsync-4-1-0安装程序" class="headerlink" title="安装cwRsync_4.1.0安装程序"></a>安装<code>cwRsync_4.1.0</code>安装程序</h2><ul>
+<li><p>拷贝压缩包<code>cwrsync.cmd</code>脚本并覆盖安装程序目录下的<code>cwrsync.cmd</code></p>
+</li>
+<li><p>将<code>[cwRsync_HOME]/bin</code>加入<code>path</code>变量</p>
+</li>
+<li><p>执行<code>cwrsync.cmd</code>,检查是否在[cwRsync_HOME]下创建<code>home/[user]/</code>目录。[注意：必须执行，否则通过ssh-keygen.exe生成秘钥文件时会提示目录创建失败]</p>
+</li>
+</ul>
+<h2 id="通过cwRsync下的ssh-keygen-exe生成秘钥文件"><a href="#通过cwRsync下的ssh-keygen-exe生成秘钥文件" class="headerlink" title="通过cwRsync下的ssh-keygen.exe生成秘钥文件"></a>通过<code>cwRsync</code>下的<code>ssh-keygen.exe</code>生成秘钥文件</h2><p>CMD进入<code>[cwRsync_HOME]/bin</code>，执行如下命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen<span class="selector-class">.exe</span> -t rsa</div></pre></td></tr></table></figure>
+<p>一直回车直到完成命令，会在<code>[cwRsync_HOME]/home/[user]/.ssh</code>目录下生成<code>id_rsa</code>、<code>id_rsa.pub</code>文件。</p>
+<h2 id="给id-rsa文件授权"><a href="#给id-rsa文件授权" class="headerlink" title="给id_rsa文件授权"></a>给<code>id_rsa</code>文件授权</h2><blockquote>
+<p>进入<code>[cwRsync_HOME]/home/[user]/.ssh</code>目录，给<code>id_rsa</code>授权：</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod <span class="number">600</span> id_rsa</div></pre></td></tr></table></figure>
+<p>若不授权，则在登录时，会出现如下错误：</p>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/aa24e6a7975c40f0/49b8264667d74bc5bdb1d1b6c1385de9.png" alt="aa24e6a7975c40f0/49b8264667d74bc5bdb1d1b6c1385de9.png"></p>
+<h2 id="添加公钥到VPS主机"><a href="#添加公钥到VPS主机" class="headerlink" title="添加公钥到VPS主机"></a>添加公钥到VPS主机</h2><blockquote>
+<p>登录到VPS主机，进入目录 ~/.ssh/ ，将公钥<code>id_rsa.pub</code>拷贝至该目录，并执行如下命令：</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub <span class="meta">&gt;&gt; </span>authorized_keys</div><div class="line">chmod <span class="number">700</span> authorized_keys</div></pre></td></tr></table></figure>
+<h2 id="测试是否配置成功"><a href="#测试是否配置成功" class="headerlink" title="测试是否配置成功"></a>测试是否配置成功</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ip 为VPS主机地址</span></div><div class="line"><span class="attribute">ssh</span> root<span class="variable">@ip</span></div></pre></td></tr></table></figure>
+<p>首次登录时，需要输入<code>root</code>用户密码，完成登录后，会在<code>[cwRsync_HOME]/home/[user]/.ssh</code>目录下生成<code>known_hosts</code>文件。</p>
+<h1 id="配置Hexo发布方式"><a href="#配置Hexo发布方式" class="headerlink" title="配置Hexo发布方式"></a>配置Hexo发布方式</h1><h2 id="安装hexo-deployer-rsync"><a href="#安装hexo-deployer-rsync" class="headerlink" title="安装hexo-deployer-rsync"></a>安装<code>hexo-deployer-rsync</code></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-deployer-rsync <span class="comment">--save</span></div></pre></td></tr></table></figure>
+<h2 id="修改-config-yml配置，参考"><a href="#修改-config-yml配置，参考" class="headerlink" title="修改_config.yml配置，参考"></a>修改<code>_config.yml</code>配置，<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">参考</a></h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">deploy:</span></div><div class="line"><span class="symbol">  type:</span> rsync</div><div class="line"><span class="symbol">  host:</span> <span class="params">&lt;host&gt;</span></div><div class="line"><span class="symbol">  user:</span> <span class="params">&lt;user&gt;</span></div><div class="line"><span class="symbol">  root:</span> <span class="params">&lt;root&gt;</span></div><div class="line"><span class="symbol">  port:</span> [port]</div><div class="line"><span class="symbol">  delete:</span> [true|false]</div><div class="line"><span class="symbol">  verbose:</span> [true|false]</div><div class="line"><span class="symbol">  ignore_errors:</span> [true|false]</div></pre></td></tr></table></figure>
+<p><img src="http://o7xt53rmp.bkt.clouddn.com/aa24e6a7975c40f0/7e20ab2458944f32adee8cc504aada16.png" alt="aa24e6a7975c40f0/7e20ab2458944f32adee8cc504aada16.png"></p>
+<h1 id="部署测试"><a href="#部署测试" class="headerlink" title="部署测试"></a>部署测试</h1><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo d</span></div></pre></td></tr></table></figure>
+<ul>
+<li>参考链接<ul>
+<li><a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a></li>
+<li><a href="http://www.xjyhs.com/14658783656436.html" target="_blank" rel="external">http://www.xjyhs.com/14658783656436.html</a></li>
+<li><a href="http://blog.csdn.net/old_imp/article/details/8826396" target="_blank" rel="external">http://blog.csdn.net/old_imp/article/details/8826396</a></li>
+<li><a href="http://blog.csdn.net/butterflydog/article/details/7464966" target="_blank" rel="external">http://blog.csdn.net/butterflydog/article/details/7464966</a></li>
+<li><a href="http://sookk8.blog.51cto.com/455855/328076/" target="_blank" rel="external">http://sookk8.blog.51cto.com/455855/328076/</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;原来Hexo博客托管在&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;和&lt;a href=&quot;https://coding.net&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Coding&lt;/a&gt;，后来买了一台VPS用于翻墙，想着直接将博客部署到VPS上面，查了官网部署方式，可通过&lt;code&gt;hexo-deployer-rsync&lt;/code&gt;、&lt;code&gt;hexo-deployer-ftpsync&lt;/code&gt;两种方式推送到VPS主机，尝试了FTP方式，不太稳定；今天通过linux的rsync方式从windows客户端平台部署到linux平台。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;VPS主机安装rsync服务&quot;&gt;&lt;a href=&quot;#VPS主机安装rsync服务&quot; class=&quot;headerlink&quot; title=&quot;VPS主机安装rsync服务&quot;&gt;&lt;/a&gt;VPS主机安装rsync服务&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;我购买的VPS主机是Centos7 64位操作系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="notes" scheme="http://www.itechq.com/categories/notes/"/>
+    
+    
+      <category term="Hexo" scheme="http://www.itechq.com/tags/Hexo/"/>
+    
+      <category term="hexo-deployer-rsync" scheme="http://www.itechq.com/tags/hexo-deployer-rsync/"/>
+    
+  </entry>
   
   <entry>
     <title>Eclipse下安装配置使用Jrebel</title>

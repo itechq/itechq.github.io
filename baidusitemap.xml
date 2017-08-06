@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.itechq.com/blog/f79573e2.html</loc>
+    <lastmod>2017-08-06T14:59:28.412Z</lastmod>
+    <data>
+        <display>
+        <title>通过hexo-deployer-rsync部署Hexo博客到VPS主机</title>
+        <pubTime>2017-08-06T13:41:09.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>hexo-deployer-rsync</tag>
+         
+         
+           
+             
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.itechq.com/blog/247947ee.html</loc>
     <lastmod>2017-03-24T12:30:14.269Z</lastmod>
     <data>
@@ -176,21 +198,41 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
+    <loc>http://www.itechq.com/blog/1d17cbb4.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
         <display>
-        <title>小米2S刷安卓原生系统</title>
-        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        <title>IntelliJ IDEA 快捷键收录</title>
+        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
         
-        <tag>小米2S</tag>
-         
-        <tag>安卓原生</tag>
+        <tag>IntelliJ IDEA</tag>
          
          
            
              
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/ec94ab3a.html</loc>
+    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
+    <data>
+        <display>
+        <title>Windows下ReviewBoard安装与配置</title>
+        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        
+        <tag>Windows</tag>
+         
+        <tag>Reviewboard</tag>
+         
+         
+           
+             
+              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
           
         </display>
     </data>
@@ -206,48 +248,6 @@
         <pubTime>2016-06-11T02:58:00.000Z</pubTime>
         
         <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/ce61af59.html</loc>
-    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
-    <data>
-        <display>
-        <title>七牛云存储同步工具——为Markdown写作诞生</title>
-        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
-        
-        <tag>七牛云存储</tag>
-         
-        <tag>Markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/1d17cbb4.html</loc>
-    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
-    <data>
-        <display>
-        <title>IntelliJ IDEA 快捷键收录</title>
-        <pubTime>2016-06-10T16:12:02.000Z</pubTime>
-        
-        <tag>IntelliJ IDEA</tag>
          
          
            
@@ -302,21 +302,43 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/ec94ab3a.html</loc>
+    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
         <display>
-        <title>Windows下ReviewBoard安装与配置</title>
-        <pubTime>2016-05-28T06:46:58.000Z</pubTime>
+        <title>小米2S刷安卓原生系统</title>
+        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
         
-        <tag>Windows</tag>
+        <tag>小米2S</tag>
          
-        <tag>Reviewboard</tag>
+        <tag>安卓原生</tag>
          
          
            
              
-              <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itechq.com/blog/ce61af59.html</loc>
+    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
+    <data>
+        <display>
+        <title>七牛云存储同步工具——为Markdown写作诞生</title>
+        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
+        
+        <tag>七牛云存储</tag>
+         
+        <tag>Markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
