@@ -218,21 +218,21 @@
 
     
   <url>
-    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
+    <loc>http://www.itechq.com/blog/ce61af59.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
         <display>
-        <title>小米2S刷安卓原生系统</title>
-        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        <title>七牛云存储同步工具——为Markdown写作诞生</title>
+        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
         
-        <tag>小米2S</tag>
+        <tag>七牛云存储</tag>
          
-        <tag>安卓原生</tag>
+        <tag>Markdown</tag>
          
          
            
              
-              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
@@ -302,6 +302,28 @@
 
     
   <url>
+    <loc>http://www.itechq.com/blog/eae29bee.html</loc>
+    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
+    <data>
+        <display>
+        <title>小米2S刷安卓原生系统</title>
+        <pubTime>2016-05-29T02:15:45.000Z</pubTime>
+        
+        <tag>小米2S</tag>
+         
+        <tag>安卓原生</tag>
+         
+         
+           
+             
+              <breadCrumb title="notes" url="http://www.itechq.com/categories/notes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.itechq.com/blog/ec94ab3a.html</loc>
     <lastmod>2017-03-23T13:18:59.446Z</lastmod>
     <data>
@@ -317,28 +339,6 @@
            
              
               <breadCrumb title="technology" url="http://www.itechq.com/categories/technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itechq.com/blog/ce61af59.html</loc>
-    <lastmod>2017-03-23T13:18:59.446Z</lastmod>
-    <data>
-        <display>
-        <title>七牛云存储同步工具——为Markdown写作诞生</title>
-        <pubTime>2016-06-09T04:34:11.000Z</pubTime>
-        
-        <tag>七牛云存储</tag>
-         
-        <tag>Markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="program" url="http://www.itechq.com/categories/program/"/>
           
         </display>
     </data>
