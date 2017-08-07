@@ -115,7 +115,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/aa24e6a7975c40f0/49b8264667d74bc5bdb1d1b6c1385de9.png">
 <meta property="og:image" content="http://o7xt53rmp.bkt.clouddn.com/aa24e6a7975c40f0/7e20ab2458944f32adee8cc504aada16.png">
-<meta property="og:updated_time" content="2017-08-06T14:59:28.412Z">
+<meta property="og:updated_time" content="2017-08-07T12:23:06.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过hexo-deployer-rsync部署Hexo博客到VPS主机">
 <meta name="twitter:description" content="原来Hexo博客托管在Github和Coding，后来买了一台VPS用于翻墙，想着直接将博客部署到VPS上面，查了官网部署方式，可通过hexo-deployer-rsync、hexo-deployer-ftpsync两种方式推送到VPS主机，尝试了FTP方式，不太稳定；今天通过linux的rsync方式从windows客户端平台部署到linux平台。  VPS主机安装rsync服务 我购买的VP">
@@ -152,7 +152,13 @@
 
 
 
-
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2989708970371812",
+    enable_page_level_ads: true
+  });
+</script>
 
   <title>通过hexo-deployer-rsync部署Hexo博客到VPS主机 | 小牧家园</title>
   
@@ -321,7 +327,6 @@
     </div>
   
 </nav>
-
 
 
  </div>
@@ -499,7 +504,7 @@
 <p>进入<code>[cwRsync_HOME]/home/[user]/.ssh</code>目录，给<code>id_rsa</code>授权：</p>
 </blockquote>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod <span class="number">600</span> id_rsa</div></pre></td></tr></table></figure>
-<p>若不授权，则在登录时，会出现如下错误：</p>
+<p>若不授权，则在登录时，会出现如下错误(我在Win10下出现，Win7下没有问题)：</p>
 <p><img src="http://o7xt53rmp.bkt.clouddn.com/aa24e6a7975c40f0/49b8264667d74bc5bdb1d1b6c1385de9.png" alt="aa24e6a7975c40f0/49b8264667d74bc5bdb1d1b6c1385de9.png"></p>
 <h2 id="添加公钥到VPS主机"><a href="#添加公钥到VPS主机" class="headerlink" title="添加公钥到VPS主机"></a>添加公钥到VPS主机</h2><blockquote>
 <p>登录到VPS主机，进入目录 ~/.ssh/ ，将公钥<code>id_rsa.pub</code>拷贝至该目录，并执行如下命令：</p>
